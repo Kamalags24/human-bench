@@ -1,15 +1,37 @@
 <template>
-  <div>
-    <h1>Aim Trainer</h1>
-    <div class="cercle"></div>
-    <p>Hit 30 targets as quickly as you can. Click the target above to begin </p>
-  </div>
+  
 </template>
 
 <script setup>
 
 </script>
 
-<style>
+<style scoped>
+  .container {
+  background-color: #2b87d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+
+}
+.cercle{
+  background-color: #FF000080;
+  border: 1px solid #FF000080;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  
+}
+
+button{
+   
+   background-color: yellow;
+   border: 1px solid yellow;
+   border-radius: 20px;
+   width: 100px;
+   height: 30px;
+
+}
 </style>

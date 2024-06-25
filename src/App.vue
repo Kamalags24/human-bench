@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
 import gameArea from "@/components/gameArea.vue";
+import information from "@/components/information.vue";
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import gameArea from "@/components/gameArea.vue";
     </nav>
   </div>
   <gameArea />
-  <RouterView />
+  <information />
 </template>
 
 <style scoped>

@@ -12,6 +12,16 @@ let top = ref(0);
 let second = ref(0);
 let score = ref(0);
 const numClicks = ref(5);
+let width = ref(50);
+let height = ref(50);
+let lon = ref ()
+let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
+'#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
+'#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
+'#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
+let a = ref();
+let misses = ref(0) // variable pour stocker
+
 
 function startGame() {
   count.value = numClicks.value
@@ -32,10 +42,9 @@ function restartGame() {
 function changePosition() {
   count.value--;
   if (count.value === 0) {
-    Game.value = true;
-    End.value = false;
+    Game.value = false;
+    End.value = true;
   }
-
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
 }
@@ -47,9 +56,27 @@ function timer() {
   let timeout = setTimeout(timer, 1);
   if (count.value === 0) {
     clearTimeout(timeout);
+ 
+console.log("Le temps passé est : ", second.value);
   }
 }
-console.log("Le temps passé est : ", second.value);
+
+
+
+   //fonction pour recuperer les misses 
+
+   function handleMisses(element) {
+    if (Game.value && element.target.className != "cercle"
+    ) {
+      misses.value++
+      
+    }
+    // console.log(misses.value);
+    // console.log(element);
+    
+   }
+
+
 </script>
 
 
@@ -71,13 +98,17 @@ console.log("Le temps passé est : ", second.value);
       
     </div>
 
-    <main class="dashboard" v-if="!Game">
+    <main class="zone" v-if="Game">
       <h1>Remaining: {{ count }}</h1>
-      <div class="container-cercle" >
+      <h3>Misses: {{ misses }}</h3>
+      <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' }"
-          @click="changePosition"
+          :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' , backgroundColor : couleurs[a],  height: height + 'px'} "
+           @click="changePosition"
+          
+
+
         ></div>
       </div>
     </main>
@@ -204,6 +235,18 @@ input {
   cursor: pointer
 }
 
+.zone {
+  color: white;
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  font-size: 22px;
+  margin: 20px auto;
+}
+
+h4 {
+  color: red;
+}
 
 /* h1 {
   margin: 0 auto;

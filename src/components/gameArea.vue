@@ -4,7 +4,7 @@ import remaining from "./remaining.vue";
 import { ref } from "vue";
 
 const Start = ref(true);
-const Game = ref(true);
+const Game = ref(false);
 const End = ref(true);
 let count = ref();
 let left = ref(0);
@@ -26,16 +26,19 @@ let misses = ref(0) // variable pour stocker
 function startGame() {
   count.value = numClicks.value
   Start.value = false;
-  Game.value = false;
-  End.value = true;
+  Game.value = true;
+  // End.value = true;
   timer();
 }
 
 function restartGame() {
-  count.value = 5;
+  second.value = 0
+  count.value = numClicks.value;
   Start.value = false;
-  Game.value = false;
+  Game.value = true;
   End.value = true;
+  
+
   timer();
 }
 
@@ -43,21 +46,29 @@ function changePosition() {
   count.value--;
   if (count.value === 0) {
     Game.value = false;
-    End.value = true;
+    End.value = !true;
   }
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
+
+  lon.value = Math.floor(Math.random() * 200);
+  width.value =lon.value;
+  height.value =lon.value;
+
+  a.value = Math.floor(Math.random() * couleurs.length-1);
+  top.value = Math.floor(Math.random() * 250);
+  left.value = Math.floor(Math.random() * 250);
+
 }
-// let score = setInterval(() => {console.log(count.value)}, 1000);
 
 function timer() {
   second.value++;
   // console.log(second.value);
   let timeout = setTimeout(timer, 1);
-  if (count.value === 0) {
+  if (count.value === 0 && second.value !== 0) {
     clearTimeout(timeout);
- 
-console.log("Le temps passé est : ", second.value);
+    
+    console.log("Le temps passé est : ", second.value);
   }
 }
 
@@ -91,7 +102,6 @@ console.log("Le temps passé est : ", second.value);
       </p>
       <!-- <input type="number"> -->
       <div class="input-button">
-          <p class="label">Nombre de clics minimum (minimum 5):</p><br>
           <input type="number" id="clicks" v-model="numClicks" min="5" @input="validateNumClicks"><br>
           <button @click="startGame" :disabled="numClicks < 5" class="gamebutton">Commencer le jeu</button>
       </div>

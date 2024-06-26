@@ -11,7 +11,12 @@ let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
-let misses = ref(0) // variable pour stocker les misses
+let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
+'#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
+'#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
+'#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
+let a = ref()
+let misses = ref(0) // variable pour stocker
 
 
 function startGame() {
@@ -36,8 +41,13 @@ function changePosition() {
   if (count.value === 0) {
     Game.value = false;
     End.value = true;
-  }
+ 
+  top.value = Math.floor(Math.random() * 100);
+  left.value = Math.floor(Math.random() * 100);
 
+  a.value = Math.floor(Math.random() * couleurs.length-1);
+  console.log(a)
+  console.log(Math.random ())
   top.value = Math.floor(Math.random() * 250);
   left.value = Math.floor(Math.random() * 250);
 }
@@ -49,7 +59,17 @@ function timer() {
   let timeout = setTimeout(timer, 1);
   if (count.value === 0) {
     clearTimeout(timeout);
-  }
+ 
+console.log("Le temps passé est : ", second.value);
+
+function back(){
+  console.log("retour")
+  r.value = Math.floor(Math.random()*256) 
+  g.value=  Math.floor(Math.random()*256) 
+  b.value=  Math.floor(Math.random()*256)
+  // console.log(r.value)
+  // rgb=
+  // console.log (rgb)
 }
 // console.log("Le temps passé est : ", second.value);
 
@@ -73,6 +93,7 @@ function timer() {
 
 
 <template>
+
   <div class="container">
     <div v-if="Start" class="zone">
       <h1>Bienvenue dans le jeu</h1>
@@ -88,7 +109,9 @@ function timer() {
       <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' }"
+          :style="{ top: top + 'px', left: left + 'px' , backgroundColor : couleurs[a] }"
+          
+          
           @click="changePosition"
         ></div>
       </div>
@@ -155,4 +178,5 @@ button {
 h4 {
   color: red;
 }
+
 </style>

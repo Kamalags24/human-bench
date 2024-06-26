@@ -38,8 +38,8 @@ function changePosition() {
     End.value = true;
   }
 
-  top.value = Math.floor(Math.random() * 100);
-  left.value = Math.floor(Math.random() * 100);
+  top.value = Math.floor(Math.random() * 250);
+  left.value = Math.floor(Math.random() * 250);
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -74,7 +74,7 @@ function timer() {
 
 <template>
   <div class="container">
-    <div v-if="Start">
+    <div v-if="Start" class="zone">
       <h1>Bienvenue dans le jeu</h1>
       <div class="cercle" @click="startGame"></div>
       <p>
@@ -82,7 +82,7 @@ function timer() {
       </p>
     </div>
 
-    <main class="dashboard" v-if="Game">
+    <main class="zone" v-if="Game">
       <h1>Remaining: {{ count }}</h1>
       <h3>Misses: {{ misses }}</h3>
       <div class="container-cercle" @click="handleMisses" >
@@ -94,7 +94,7 @@ function timer() {
       </div>
     </main>
 
-    <div v-if="End">
+    <div v-if="End" class="zone">
       <div class="cercle"></div>
       <p>Average time per target</p>
       <h2>{{ second }} ms</h2>
@@ -114,14 +114,10 @@ function timer() {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 500px;
+  height: 800px;
 
 }
 
-.container-cercle {
-  display: block;
-  position: relative;
-}
 
 .cercle {
   background-color: #ff000080;
@@ -144,8 +140,19 @@ button {
 }
 
 .container-cercle {
-  border: 1px solid black;
+  height: 350px;
+  width: 660px;
+}
+
+.zone {
+  color: white;
+  width: 500px;
   height: 300px;
-  width: 800px;
+  text-align: center;
+  font-size: 22px;
+  margin: 20px auto;
+}
+h4 {
+  color: red;
 }
 </style>

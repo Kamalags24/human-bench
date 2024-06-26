@@ -11,6 +11,9 @@ let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
+let width = ref(50);
+let height = ref(50);
+let lon = ref ()
 let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
 '#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
 '#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
@@ -45,12 +48,21 @@ function changePosition() {
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
 
+
+  // width.value = Math.floor(Math.random() * 150);
+  // height.value = Math.floor(Math.random() * 150);
+
+  //
+   lon.value = Math.floor(Math.random() * 200);
+  width.value =lon.value;
+  height.value =lon.value;
+
   a.value = Math.floor(Math.random() * couleurs.length-1);
-  console.log(top.value)
-  
-  // top.value = Math.floor(Math.random() * 250);
-  // left.value = Math.floor(Math.random() * 250);
-  
+  console.log(a)
+  console.log(Math.random ())
+  top.value = Math.floor(Math.random() * 250);
+  left.value = Math.floor(Math.random() * 250);
+
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -102,8 +114,10 @@ console.log("Le temps passé est : ", second.value);
       <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' , backgroundColor : couleurs[a] }"
-          @click="changePosition"
+          :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' , backgroundColor : couleurs[a],  height: height + 'px'} "
+           @click="changePosition"
+          
+
 
         ></div>
       </div>
@@ -138,8 +152,8 @@ console.log("Le temps passé est : ", second.value);
   background-color: #ff000080;
   border: 1px solid #ff000080;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   position: relative;
   top: 0;
   left: 0;
@@ -152,6 +166,7 @@ button {
   border-radius: 20px;
   width: 100px;
   height: 30px;
+  text-align: center;
 }
 
 .container-cercle {
@@ -167,8 +182,10 @@ button {
   font-size: 22px;
   margin: 20px auto;
 }
+
 h4 {
   color: red;
 }
+
 
 </style>

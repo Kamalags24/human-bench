@@ -11,7 +11,9 @@ let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
-
+let width = ref(50);
+let height = ref(50);
+let lon = ref ();
 
 function startGame() {
   Start.value = false;
@@ -37,6 +39,14 @@ function changePosition() {
 
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
+
+  // width.value = Math.floor(Math.random() * 150);
+  // height.value = Math.floor(Math.random() * 150);
+
+  //
+   lon.value = Math.floor(Math.random() * 200);
+  width.value =lon.value;
+  height.value =lon.value;
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -68,8 +78,10 @@ console.log("Le temps passé est : ", second.value);
       <div class="container-cercle" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' }"
-          @click="changePosition"
+          :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' ,  height: height + 'px'} "
+           @click="changePosition"
+          
+
         ></div>
       </div>
     </main>
@@ -106,8 +118,8 @@ console.log("Le temps passé est : ", second.value);
   background-color: #ff000080;
   border: 1px solid #ff000080;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   position: relative;
   top: 0;
   left: 0;
@@ -120,6 +132,7 @@ button {
   border-radius: 20px;
   width: 100px;
   height: 30px;
+  text-align: center;
 }
 
 .container-cercle {
@@ -127,4 +140,5 @@ button {
   height: 300px;
   width: 800px;
 }
+
 </style>

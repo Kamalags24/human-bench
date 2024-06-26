@@ -23,6 +23,18 @@ let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
 '#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
 let a = ref();
 let misses = ref(0) // variable pour stocker
+// const changePosition = ref(true)
+// const colorChangeEnabled = ref(true);
+
+const isChangeColorActive = ref(true);
+const ischangePosition = ref(true)
+
+const toggleColorChange = () => {
+  colorChangeEnabled.value = !colorChangeEnabled.value;
+};
+
+
+
 
 
 function startGame() {
@@ -33,16 +45,21 @@ function startGame() {
   timer();
 }
 
+
+
 function restartGame() {
   second.value = 0
   count.value = numClicks.value;
   Start.value = false;
   Game.value = true;
   End.value = true;
-  
-
   timer();
 }
+
+function recommencer () {
+    Start.value = true;
+    End.value = true;
+  }
 
 function changePosition() {
   count.value--;
@@ -50,16 +67,25 @@ function changePosition() {
     Game.value = false;
     End.value = !true;
   }
+ 
+
+
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
 
+
+  if (ischangePosition.value) {
   lon.value = Math.floor(Math.random() * 200);
   width.value =lon.value;
   height.value =lon.value;
+}
 
+  if (isChangeColorActive.value  ) {
   a.value = Math.floor(Math.random() * couleurs.length-1);
   top.value = Math.floor(Math.random() * 250);
   left.value = Math.floor(Math.random() * 250);
+  }
+  
 
 }
 
@@ -92,6 +118,9 @@ function timer() {
     
    }
 
+
+ 
+
    function stockerScore() {
     allScores.value.push(second.value); // Ajoutez le score actuel au tableau des scores
     emit('updateScore', allScores.value)
@@ -113,14 +142,29 @@ function timer() {
       <!-- <input type="number"> -->
       <div class="input-button">
           <input type="number" id="clicks" v-model="numClicks" min="5" @input="validateNumClicks"><br>
+          <label>
+      <input type="checkbox"  v-model="isChangeColorActive"  >
+      Activer les couleurs aléatoires
+          </label>
+          <div class="checkbox2">
+            <input type="checkbox" v-model="ischangePosition">
+            <label for="checkbox2">Variation de la taille de la boule</label>
+          </div>
           <button @click="startGame" :disabled="numClicks < 5" class="gamebutton">Commencer le jeu</button>
       </div>
       
     </div>
 
-    <main class="zone" v-if="Game">
-      <h1>Remaining: {{ count }}</h1>
-      <h3>Misses: {{ misses }}</h3>
+    
+      <main class="zone" v-if="Game">
+      <div class="miss">
+        <span>
+          Remaining: {{ count }}
+        </span>
+        <span>
+          Miss: {{ misses }}
+        </span>
+      </div>
       <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
@@ -139,6 +183,7 @@ function timer() {
       <p class="second">{{ second + " ms" }}</p>
       <p class="save">Save your score to see how you compare</p>
       <button class="restast-button" @click="restartGame">Reprendre</button>
+      <button class="recom" @click="recommencer"  >Recommencer</button>
     </div>
   </div>
 </template>
@@ -147,7 +192,7 @@ function timer() {
 <style scoped>
 
 .container-cercle {
-  border: 1px solid;
+  /* border: 1px solid; */
   height: 300px;
   width: 800px;
 }
@@ -165,7 +210,7 @@ function timer() {
   margin: 0;
   padding: 13px;
   text-align: center;
-  transform: translateX(130px);
+  transform: translateX(10px);
   margin-top: 35px;
   color: inherit;
   background-color: yellow;
@@ -173,6 +218,14 @@ function timer() {
   border: none;
   color: black;
   font-weight: bold;
+}
+
+.restast-button:hover {
+  cursor: pointer;
+}
+
+.recom:hover {
+  cursor: pointer
 }
 
 .save {
@@ -203,10 +256,19 @@ function timer() {
   color: white;
 }
 
-h1 {
+.recom {
   margin: 0;
-  padding: 0;
+  padding: 13px;
   text-align: center;
+  transform: translateX(130px);
+  margin-top: 35px;
+  color: inherit;
+  background-color: yellow;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+
 }
 
 .input-button {
@@ -215,9 +277,10 @@ h1 {
   text-align: center;
 }
 
-main h1 {
+/* main h1  {
   margin-bottom: 100px;
-}
+ 
+} */
 
 .cercle {
   background-color: #ff000080;
@@ -231,7 +294,7 @@ main h1 {
   margin: auto;
 }
 
-input {
+#clicks {
   width: 300px;
   height: 30px;
   border: none;
@@ -263,13 +326,27 @@ input {
 }
 
 .zone {
+/* display: flex;
+justify-content: center; */
+
   color: white;
-  width: 500px;
-  height: 300px;
-  text-align: center;
-  font-size: 22px;
-  margin: 20px auto;
+
+  /* font-size: 22px; */
+
 }
+
+span {
+    padding-left: 110px;
+}
+ .miss {
+
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  padding-left: 70px;
+/* justify-content: center; */
+ }
 
 h4 {
   color: red;

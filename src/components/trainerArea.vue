@@ -20,8 +20,8 @@
   background-color: #FF000080;
   border: 1px solid #FF000080;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   
 }
 

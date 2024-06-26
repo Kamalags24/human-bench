@@ -12,6 +12,7 @@ let top = ref(0);
 let second = ref(0);
 let score = ref(0);
 
+
 function startGame() {
   Start.value = false;
   Game.value = false;
@@ -93,6 +94,7 @@ console.log("Le temps passé est : ", second.value);
   flex-direction: column;
   width: 100%;
   height: 500px;
+
 }
 
 .container-cercle {
@@ -104,8 +106,8 @@ console.log("Le temps passé est : ", second.value);
   background-color: #ff000080;
   border: 1px solid #ff000080;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   position: relative;
   top: 0;
   left: 0;

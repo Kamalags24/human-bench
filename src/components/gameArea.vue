@@ -135,6 +135,13 @@ function timer() {
 
 
 <style scoped>
+
+.container-cercle {
+  border: 1px solid;
+  height: 300px;
+  width: 800px;
+}
+
 .cercle-p {
   color: white;
   margin: 0;

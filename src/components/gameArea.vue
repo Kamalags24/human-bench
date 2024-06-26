@@ -11,6 +11,13 @@ let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
+let  couleurs= ["#e74c3c", "#2ecc71", "#f1c40f", "#9b59b6", "#1abc9c"]
+let a = ref()
+// let r = ref()
+// let b=ref ()
+// let g=  ref()
+// let rgb = ref ()
+
 
 function startGame() {
   Start.value = false;
@@ -36,6 +43,11 @@ function changePosition() {
 
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
+
+  a.value = Math.floor(Math.random() * couleurs.length-1);
+  console.log(a)
+  console.log(Math.random ())
+  
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -48,12 +60,23 @@ function timer() {
   }
 }
 console.log("Le temps passé est : ", second.value);
+
+function back(){
+  console.log("retour")
+  r.value = Math.floor(Math.random()*256) 
+  g.value=  Math.floor(Math.random()*256) 
+  b.value=  Math.floor(Math.random()*256)
+  // console.log(r.value)
+  // rgb=
+  // console.log (rgb)
+}
+
 </script>
 
 
 
 <template>
-  <div class="container">
+  <div class="container"  @click="back">
     <div v-if="Start">
       <h1>Bienvenue dans le jeu</h1>
       <div class="cercle" @click="startGame"></div>
@@ -67,7 +90,9 @@ console.log("Le temps passé est : ", second.value);
       <div class="container-cercle" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' }"
+          :style="{ top: top + 'px', left: left + 'px' , backgroundColor : couleurs[a] }"
+          
+          
           @click="changePosition"
         ></div>
       </div>
@@ -125,4 +150,5 @@ button {
   height: 300px;
   width: 800px;
 }
+
 </style>

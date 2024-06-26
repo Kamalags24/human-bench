@@ -11,7 +11,10 @@ let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
-let  couleurs= ["#e74c3c", "#2ecc71", "#f1c40f", "#9b59b6", "#1abc9c"]
+let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
+'#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
+'#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
+'#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
 let a = ref()
 // let r = ref()
 // let b=ref ()

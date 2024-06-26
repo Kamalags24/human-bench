@@ -4,39 +4,42 @@ import remaining from "./remaining.vue";
 import { ref } from "vue";
 
 const Start = ref(true);
-const Game = ref(true);
-const End = ref(true);
+const Game = ref(false);
+const End = ref(false);
 let count = ref(5);
 let left = ref(0);
 let top = ref(0);
 let second = ref(0);
 let score = ref(0);
+let misses = ref(0) // variable pour stocker les misses
 
 
 function startGame() {
   Start.value = false;
-  Game.value = false;
-  End.value = true;
+  Game.value = true;
+  End.value = false;
   timer();
 }
 
 function restartGame() {
   count.value = 5;
   Start.value = false;
-  Game.value = false;
-  End.value = true;
+  Game.value = true;
+  End.value = false;
+  second.value = 0; // Réinitialiser le chronomètre
+  misses.value = 0;
   timer();
-}
+} 
 
 function changePosition() {
   count.value--;
   if (count.value === 0) {
-    Game.value = true;
-    End.value = false;
+    Game.value = false;
+    End.value = true;
   }
 
-  top.value = Math.floor(Math.random() * 100);
-  left.value = Math.floor(Math.random() * 100);
+  top.value = Math.floor(Math.random() * 250);
+  left.value = Math.floor(Math.random() * 250);
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -48,14 +51,30 @@ function timer() {
     clearTimeout(timeout);
   }
 }
-console.log("Le temps passé est : ", second.value);
+// console.log("Le temps passé est : ", second.value);
+
+
+   //fonction pour recuperer les misses 
+
+   function handleMisses(element) {
+    if (Game.value && element.target.className != "cercle"
+    ) {
+      misses.value++
+      
+    }
+    // console.log(misses.value);
+    // console.log(element);
+    
+   }
+
+
 </script>
 
 
 
 <template>
   <div class="container">
-    <div v-if="Start">
+    <div v-if="Start" class="zone">
       <h1>Bienvenue dans le jeu</h1>
       <div class="cercle" @click="startGame"></div>
       <p>
@@ -63,9 +82,10 @@ console.log("Le temps passé est : ", second.value);
       </p>
     </div>
 
-    <main class="dashboard" v-if="!Game">
+    <main class="zone" v-if="Game">
       <h1>Remaining: {{ count }}</h1>
-      <div class="container-cercle" >
+      <h3>Misses: {{ misses }}</h3>
+      <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
           :style="{ top: top + 'px', left: left + 'px' }"
@@ -74,10 +94,11 @@ console.log("Le temps passé est : ", second.value);
       </div>
     </main>
 
-    <div v-if="!End">
+    <div v-if="End" class="zone">
       <div class="cercle"></div>
       <p>Average time per target</p>
-      <p>{{ second }}</p>
+      <h2>{{ second }} ms</h2>
+      <h4>Misses: {{ misses }}</h4>
       <p>Save your score to see how you compare</p>
       <button @click="restartGame">Try again</button>
     </div>
@@ -93,14 +114,10 @@ console.log("Le temps passé est : ", second.value);
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 500px;
+  height: 800px;
 
 }
 
-.container-cercle {
-  display: block;
-  position: relative;
-}
 
 .cercle {
   background-color: #ff000080;
@@ -123,8 +140,19 @@ button {
 }
 
 .container-cercle {
-  border: 1px solid black;
+  height: 350px;
+  width: 660px;
+}
+
+.zone {
+  color: white;
+  width: 500px;
   height: 300px;
-  width: 800px;
+  text-align: center;
+  font-size: 22px;
+  margin: 20px auto;
+}
+h4 {
+  color: red;
 }
 </style>

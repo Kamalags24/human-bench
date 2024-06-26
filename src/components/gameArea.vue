@@ -2,6 +2,7 @@
 import trainerArea from "./trainerArea.vue";
 import remaining from "./remaining.vue";
 import { ref } from "vue";
+const emit = defineEmits (['updateScore'])
 
 const Start = ref(true);
 const Game = ref(false);
@@ -15,6 +16,7 @@ const numClicks = ref(5);
 let width = ref(50);
 let height = ref(50);
 let lon = ref ()
+let allScores = ref ([])
 let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
 '#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
 '#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
@@ -92,11 +94,14 @@ function timer() {
   // console.log(second.value);
   let timeout = setTimeout(timer, 1);
   if (count.value === 0 && second.value !== 0) {
+    stockerScore()
+    console.log(allScores.value);
     clearTimeout(timeout);
     
-    console.log("Le temps passé est : ", second.value);
   }
+  
 }
+
 
 
 
@@ -113,7 +118,15 @@ function timer() {
     
    }
 
+
  
+
+   function stockerScore() {
+    allScores.value.push(second.value); // Ajoutez le score actuel au tableau des scores
+    emit('updateScore', allScores.value)
+}
+
+
 </script>
 
 

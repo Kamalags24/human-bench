@@ -2,6 +2,14 @@
 import { RouterLink, RouterView } from "vue-router";
 import gameArea from "@/components/gameArea.vue";
 import information from "@/components/information.vue";
+import { ref } from "vue";
+
+const scores = ref([])
+
+function sendScores(score){
+  scores.value = score
+  console.log(scores.value);
+}
 </script>
 
 <template>
@@ -17,8 +25,9 @@ import information from "@/components/information.vue";
       </div>
     </nav>
   </div>
-  <gameArea />
-  <information />
+
+  <gameArea  @update-score="sendScores"/>
+  <information :scores = "scores"/>
   <RouterView />
 </template>
 

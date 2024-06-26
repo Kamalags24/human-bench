@@ -1,3 +1,25 @@
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+
+
+const myScores = ref([])
+
+const props = defineProps({
+  scores : {
+    type:Array,
+  }
+})
+
+
+watch(()=>props.scores,(score)=>{
+  myScores.value = score
+  console.log(myScores.value);
+})
+
+
+</script>
+
+
 <template>
   <div class="container">
     <div class="second-container">
@@ -12,9 +34,14 @@
           <p>Scores in this test are slower than the simple reaction time test, because you must react and then move the cursor.</p>
           <p>This test is best taken with a mouse or tablet screen. Trackpads are difficult to score well with.</p>
       </div>
+
       <div class="container-four">
-          <h2>Statistics</h2>
-          <img src="/public/statt.png" alt="">
+        <h2>Scores</h2>
+        <div v-for="(score, index) in myScores" :key="index">
+              <h4>Score {{ index + 1 }}: {{ score }}</h4>
+          </div>
+
+          <!-- <img src="/public/statt.png" alt=""> -->
       </div>
     </div>
     <div class="container-five">
@@ -24,9 +51,6 @@
 
 </template>
 
-<script setup>
-
-</script>
 
 <style scoped>
   .container {

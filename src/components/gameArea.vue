@@ -50,16 +50,40 @@ function changePosition() {
   }
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
-
-  lon.value = Math.floor(Math.random() * 200);
-  width.value =lon.value;
-  height.value =lon.value;
-
+   
+  
+ 
+ 
   a.value = Math.floor(Math.random() * couleurs.length-1);
   top.value = Math.floor(Math.random() * 250);
   left.value = Math.floor(Math.random() * 250);
 
+  taille();
+
 }
+
+function taille(){
+  
+  lon.value = Math.floor(Math.random() * 130);
+    
+  
+  if (lon.value > 50 && lon.value<150  ){
+
+    
+    width.value =lon.value;
+    height.value =lon.value;
+
+
+   
+  } else{
+    width.value = 60;
+    height.value = 60;
+
+  }
+  
+  console.log(lon.value);  
+}
+
 
 function timer() {
   second.value++;
@@ -109,8 +133,15 @@ function timer() {
     </div>
 
     <main class="zone" v-if="Game">
-      <h1>Remaining: {{ count }}</h1>
-      <h3>Misses: {{ misses }}</h3>
+
+      <ul class="ligne">
+        <li>
+          <p>Remaining: {{ count }}</p>
+        </li>
+        <li>
+          <p>Misses: {{ misses }}</p>
+        </li>
+      </ul>
       <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
@@ -137,9 +168,13 @@ function timer() {
 <style scoped>
 
 .container-cercle {
-  border: 1px solid;
+  border: 5px solid rgba(245, 8, 8, 0.909);
   height: 300px;
   width: 800px;
+  overflow: hidden;
+  
+  padding: 10%;
+
 }
 
 .cercle-p {
@@ -219,6 +254,11 @@ main h1 {
   top: 0;
   left: 0;
   margin: auto;
+  flex-wrap: wrap;
+  max-width: 150px;
+  overflow: initial;
+ 
+  
 }
 
 input {
@@ -264,7 +304,14 @@ input {
 h4 {
   color: red;
 }
-
+.ligne{
+  display: flex;
+  justify-content: space-around;
+}
+li{
+  list-style-type: none;
+  gap:50 px;
+}
 /* h1 {
   margin: 0 auto;
   color: white;

@@ -4,8 +4,8 @@ import remaining from "./remaining.vue";
 import { ref } from "vue";
 
 const Start = ref(true);
-const Game = ref(true);
-const End = ref(true);
+const Game = ref(false);
+const End = ref(false);
 let count = ref(5);
 let left = ref(0);
 let top = ref(0);
@@ -13,32 +13,41 @@ let second = ref(0);
 let score = ref(0);
 let width = ref(50);
 let height = ref(50);
-let lon = ref ();
+let lon = ref ()
+let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
+'#FFFF33', '#FF33F8', '#33FFFB', '#FF8333', '#33FF83',
+'#3373FF', '#F883FF', '#3383FF', '#FF3383', '#83FF33',
+'#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
+let a = ref()
+let misses = ref(0) // variable pour stocker
+
 
 function startGame() {
   Start.value = false;
-  Game.value = false;
-  End.value = true;
+  Game.value = true;
+  End.value = false;
   timer();
 }
 
 function restartGame() {
   count.value = 5;
   Start.value = false;
-  Game.value = false;
-  End.value = true;
+  Game.value = true;
+  End.value = false;
+  second.value = 0; // Réinitialiser le chronomètre
+  misses.value = 0;
   timer();
-}
+} 
 
 function changePosition() {
   count.value--;
   if (count.value === 0) {
-    Game.value = true;
-    End.value = false;
-  }
-
+    Game.value = false;
+    End.value = true;
+ 
   top.value = Math.floor(Math.random() * 100);
   left.value = Math.floor(Math.random() * 100);
+
 
   // width.value = Math.floor(Math.random() * 150);
   // height.value = Math.floor(Math.random() * 150);
@@ -47,6 +56,13 @@ function changePosition() {
    lon.value = Math.floor(Math.random() * 200);
   width.value =lon.value;
   height.value =lon.value;
+
+  a.value = Math.floor(Math.random() * couleurs.length-1);
+  console.log(a)
+  console.log(Math.random ())
+  top.value = Math.floor(Math.random() * 250);
+  left.value = Math.floor(Math.random() * 250);
+
 }
 // let score = setInterval(() => {console.log(count.value)}, 1000);
 
@@ -56,16 +72,43 @@ function timer() {
   let timeout = setTimeout(timer, 1);
   if (count.value === 0) {
     clearTimeout(timeout);
-  }
-}
+ 
 console.log("Le temps passé est : ", second.value);
+
+function back(){
+  console.log("retour")
+  r.value = Math.floor(Math.random()*256) 
+  g.value=  Math.floor(Math.random()*256) 
+  b.value=  Math.floor(Math.random()*256)
+  // console.log(r.value)
+  // rgb=
+  // console.log (rgb)
+}
+// console.log("Le temps passé est : ", second.value);
+
+
+   //fonction pour recuperer les misses 
+
+   function handleMisses(element) {
+    if (Game.value && element.target.className != "cercle"
+    ) {
+      misses.value++
+      
+    }
+    // console.log(misses.value);
+    // console.log(element);
+    
+   }
+
+
 </script>
 
 
 
 <template>
+
   <div class="container">
-    <div v-if="Start">
+    <div v-if="Start" class="zone">
       <h1>Bienvenue dans le jeu</h1>
       <div class="cercle" @click="startGame"></div>
       <p>
@@ -73,23 +116,26 @@ console.log("Le temps passé est : ", second.value);
       </p>
     </div>
 
-    <main class="dashboard" v-if="!Game">
+    <main class="zone" v-if="Game">
       <h1>Remaining: {{ count }}</h1>
-      <div class="container-cercle" >
+      <h3>Misses: {{ misses }}</h3>
+      <div class="container-cercle" @click="handleMisses" >
         <div
           class="cercle"
-          :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' ,  height: height + 'px'} "
+          :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' , backgroundColor : couleurs[a],  height: height + 'px'} "
            @click="changePosition"
           
+
 
         ></div>
       </div>
     </main>
 
-    <div v-if="!End">
+    <div v-if="End" class="zone">
       <div class="cercle"></div>
       <p>Average time per target</p>
-      <p>{{ second }}</p>
+      <h2>{{ second }} ms</h2>
+      <h4>Misses: {{ misses }}</h4>
       <p>Save your score to see how you compare</p>
       <button @click="restartGame">Try again</button>
     </div>
@@ -105,14 +151,10 @@ console.log("Le temps passé est : ", second.value);
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 500px;
+  height: 800px;
 
 }
 
-.container-cercle {
-  display: block;
-  position: relative;
-}
 
 .cercle {
   background-color: #ff000080;
@@ -136,9 +178,22 @@ button {
 }
 
 .container-cercle {
-  border: 1px solid black;
-  height: 300px;
-  width: 800px;
+  height: 350px;
+  width: 660px;
 }
+
+.zone {
+  color: white;
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  font-size: 22px;
+  margin: 20px auto;
+}
+
+h4 {
+  color: red;
+}
+
 
 </style>

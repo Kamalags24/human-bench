@@ -14,7 +14,6 @@ function loadScoresFromLocalStorage() {
   }else {
     scores.value = [];
   }
-  console.log(scores.value);
 }
 
 // Sauvegarder les scores dans le localStorage
@@ -26,11 +25,11 @@ function saveScoresToLocalStorage() {
 // Fonction pour mettre à jour les scores
 function sendScores(score) { //score est le tableau de scores que l'enfant envoie
   console.log('fromSendscore', score);
-  scores.value.push(score[score.length - 1]);
+  scores.value = score;
  
-  saveScoresToLocalStorage(scores.value);
+  saveScoresToLocalStorage();
 
-  // console.log('fromSendscore', scores.value);
+  console.log('fromSendscore', scores.value);
 }
 
 

@@ -1,7 +1,7 @@
 <script setup>
 import trainerArea from "./trainerArea.vue";
 import remaining from "./remaining.vue";
-import { ref, nextTick } from "vue";
+import { ref, nextTick, onMounted } from "vue";
 const emit = defineEmits(["updateScore"]);
 
 const Start = ref(true); // variable pour afficher l'espace de  démarrage du jeu
@@ -153,10 +153,6 @@ function stockerScore() {
   emit("updateScore", allScores.value); // envoie le tableau des scores au composant information pour les afficher dans le composant gameArea
   allScores.value.sort((a,b)=> a-b)
     console.log(allScores.value);
-    console.log([1,5,2,4,3].sort());
-
-    let best = score[0];
-    console.log(best)
 }
 
 // Fonction pour mettre à jour les dimensions
@@ -164,7 +160,9 @@ function updateContainerCercleSize(newWidth, newHeight) {
   containerCercleWidth.value = newWidth;
   containerCercleHeight.value = newHeight;
 }
-console.log(containerCercleHeight);
+
+
+
 </script>
 
 

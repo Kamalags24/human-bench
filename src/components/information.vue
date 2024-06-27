@@ -21,7 +21,7 @@ watch(()=>props.scores,(score)=>{
   myScores.value = score
   console.log(score);
   label.value.push(`partie ${count.value++}`)
-  // chartjs();
+  updateChart();
   console.log("myScores => ", myScores.value);
   console.log(label.value);
 })
@@ -51,14 +51,18 @@ async function chartjs() {
   );
 }
 
-// watch(() => myScores.value,  chartjs);
-
+function updateChart() {
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+  chartjs();
+}
 
 onMounted(() => {
   myScores.value = JSON.parse(localStorage.getItem('allScores'))
 
   myScores.value.forEach(partie => {
-    label.value.push(`Partie ${count.value++}`)
+    label.value.push(`Partie ${count.value <= myScores.value.length ? count.value++ : ''}`)
     console.log(count.value);
   });
 

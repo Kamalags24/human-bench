@@ -176,7 +176,6 @@ console.log(containerCercleHeight);
 </script>
 
 
-
 <template>
   <div class="container1">
       <!-- Ajouter des champs de saisie pour les dimensions -->
@@ -200,6 +199,16 @@ console.log(containerCercleHeight);
             placeholder="Hauteur de la zone de jeu"
           />
         </label>
+        <br />
+      <label for="">
+        Hauteur:
+        <input
+          type="number"
+          v-model="containerCercleHeight"
+          min="100"
+          placeholder="Hauteur de la zone de jeu"
+        />
+      </label>
     </div>
 
     <div class="container" @click="handleMisses">

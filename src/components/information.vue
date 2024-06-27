@@ -14,6 +14,10 @@ const props = defineProps({  //cons props pour la recupération des scores depu
 watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynamique et recupère les scores finaux et les affiches sur la vue App.vue
   myScores.value = score  // dans le composant information on recupère les scores  et on les affiches sur la vue App.vue
   console.log(myScores.value);
+
+  
+
+
 })
 
 
@@ -36,12 +40,14 @@ watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynam
       </div>
 
       <div class="container-four">
-        <h2>Scores</h2>
-        <div class="fourth-container" v-for="(score, index) in myScores" :key="index"> <!--  affiche les scores de façon dynamique  -->
-              <h4>Score {{ index + 1 }}: {{ score }}</h4> <!--suivant l'index , on affiche le score correspondant , l'index s'incremente  chaque fois que l'on clique sur le bouton reprendre-->
-          </div>
+        <h2>Scores - Meilleur Score {{ myScores[0] }} </h2>
+        <div   class="fourth-container" v-for="(score, index) in myScores" :key="index">
+          <h4>Score {{ index + 1 }}: {{ score }}</h4>
+          
+        </div>
 
-          <!-- <img src="/public/statt.png" alt=""> -->
+
+        <!-- <img src="/public/statt.png" alt=""> -->
       </div>
     </div>
     <div class="container-five">
@@ -53,31 +59,30 @@ watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynam
 
 
 <style scoped>
-  .container {
-    background-color: #e6e6e6;
-  }
+.container {
+  background-color: #e6e6e6;
+}
 
-  .second-container {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1000px;
-    height: 150px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 40px;
-    background-color: #fff;
-  }
+.second-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 150px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 40px;
+  background-color: #fff;
+}
 
-  .third-container {
-    background-color: white;
-    padding: 30px;
-    padding-right: 20px;
-    margin: 0 auto;
-  }
-
+.third-container {
+  background-color: white;
+  padding: 30px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
   .container-four {
     background-color: white;
     padding-left: 20px;
@@ -92,20 +97,28 @@ watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynam
     
   }
 
-  .container-five {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1000px;
-    height: 150px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 25px;
-    background-color: #fff;
-  }
+.container-four {
+  background-color: white;
+  padding-left: 20px;
+  margin: 0 auto; 
+  width: 500px;
+  height: 400px;
+}
 
-  .flex-container {
+.container-five {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 150px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #fff;
+}
+
+.flex-container {
   /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;

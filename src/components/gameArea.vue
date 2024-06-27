@@ -48,17 +48,20 @@ function startGame() {
 
 
 function restartGame() {
-  second.value = 0
+  second.value = 0;
   count.value = numClicks.value;
   Start.value = false;
   Game.value = true;
   End.value = true;
+  misses.value = 0;
   timer();
 }
 
 function recommencer () {
     Start.value = true;
     End.value = true;
+    misses.value = 0;
+    second.value = 0;
   }
 
 function changePosition() {
@@ -212,6 +215,7 @@ function timer() {
       <div class="cercle"></div>
       <p class="cercle-p">Temps moyen par click</p>
       <p class="second">{{ second + " ms" }}</p>
+      <div>Misses : {{ misses }}</div>
       <p class="save">Save your score to see how you compare</p>
       <button class="restast-button" @click="restartGame">Reprendre</button>
       <button class="recom" @click="recommencer"  >Recommencer</button>

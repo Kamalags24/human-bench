@@ -5,10 +5,6 @@ import information from "@/components/information.vue";
 import { ref, onMounted, watch } from "vue";
 
 const scores = ref([])
-// sendScores recupère les scores et les affiches dans la console
-function sendScores(score){
-  scores.value = score
-const scores = ref([]);
 
 // Charger les scores depuis le localStorage
 function loadScoresFromLocalStorage() {

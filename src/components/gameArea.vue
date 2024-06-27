@@ -219,14 +219,10 @@ console.log(containerCercleHeight);
                 Activer les couleurs aléatoires
               </li>
               <li>
-                <input type="checkbox" v-model="isChangeColorActive" />
-                Activer les couleurs aléatoires
-              </li>
-              <div class="checkbox2">
                 <input type="checkbox" v-model="ischangePosition" />
                 <!-- coche pour changer la taille de la balle au clic -->
                 <label for="checkbox2">Variation de la taille de la boule</label>
-              </div>
+              </li> 
             </ul>
           </label>
           <button
@@ -300,6 +296,26 @@ console.log(containerCercleHeight);
 
 
 <style scoped>
+
+h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+li {
+  padding: 10px;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
 .dimensions-cercle-container {
   color: rgb(192, 245, 0);
   font-size: 18px;
@@ -415,7 +431,7 @@ console.log(containerCercleHeight);
   height: 103px;
   position: relative;
   top: 10px;
-  left: 45%;
+  left: 38%;
   /* margin: auto; */
   max-width: 100px;
   max-height: 100px;

@@ -17,36 +17,18 @@ let width = ref(50); //variable pour changer la taille de la balle à chaque cli
 let height = ref(50); //variable pour changer la hauteur de la balle à chaque clic
 let lon = ref(); // variable aléatoire  ajouté  pour changer la taille de la balle à chaque clic
 let allScores = ref([]); // tableau pour stocker le temps mis par l'utilisateur à la fin du jeu
-let couleurs = [
-  "#FF5733",
-  "#33FF57",
-  "#3357FF",
-  "#F833FF",
-  "#33FFF8",
-  "#FFFF33",
-  "#FF33F8",
-  "#33FFFB",
-  "#FF8333",
-  "#33FF83",
-  "#3373FF",
-  "#F883FF",
-  "#3383FF",
-  "#FF3383",
-  "#83FF33",
-  "#5733FF",
-  "#FF573A",
-  "#33FF5A",
-  "#335AFF",
-  "#F833FA",
-]; // tableau de couleur
+let couleurs = ["#FF5733","#33FF57","#3357FF","#F833FF","#33FFF8","#FFFF33","#FF33F8","#33FFFB",
+"#FF8333","#33FF83","#3373FF","#F883FF","#3383FF","#FF3383","#83FF33","#5733FF",
+  "#FF573A","#33FF5A","#335AFF","#F833FA"]; // tableau de couleur
+
 let a = ref(); // variable parcourir le tableau de couleur de façon aleatoire
 let misses = ref(0); // variable pour compter le nombre de clics ratés
 // const changePosition = ref(true)
 // const colorChangeEnabled = ref(true);
 
 // Propriétés réactives pour les dimensions de la zone de jeu
-let containerCercleWidth = ref(800); // Largeur par défaut
-let containerCercleHeight = ref(300); // Hauteur par défaut
+let containerCercleWidth = ref(100); // Largeur par défaut
+let containerCercleHeight = ref(100); // Hauteur par défaut
 
 const isChangeColorActive = ref(true); // variable pour changer la couleur de la balle si l'utilisateur coche la case changement ou variation de couleur au clic
 const ischangePosition = ref(true); // variable pour changer la position de la balle au clic si l'utilisateur coche la case variation de position
@@ -60,6 +42,8 @@ function startGame() {
   count.value = numClicks.value; // affecte le nombre de clic sur la balle au compteur
   Start.value = false;
   Game.value = true;
+  misses.value = 0; //initialise le nombre de clic ratés à 0
+
   // End.value = true;
   timer();
   nextTick(() => {
@@ -97,8 +81,12 @@ function changePosition() {
     End.value = !true;
   }
 
-  top.value = Math.floor(Math.random() * 100); // variable pour changer la position de la balle au clic vers le haut de facon aleatoire entre 0 et 100
-  left.value = Math.floor(Math.random() * 100); // variable pour changer la position de la balle au clic vers la gauche de facon aleatoire entre 0 et 100
+  // Calculez la nouvelle position en tenant compte de la taille de la balle
+  const maxTop = containerCercleHeight.value - height.value;
+  const maxLeft = containerCercleWidth.value - width.value;
+
+  top.value = Math.floor(Math.random() * maxTop);
+  left.value = Math.floor(Math.random() * maxLeft);
 
   //condition pour changer  la  taille de la balle au clic quand la case variation de taille est coche
   if (ischangePosition.value) {
@@ -109,8 +97,6 @@ function changePosition() {
   // condition pour changer la couleur de la balle au clic quand la case changement de couleur ou variation de couleur est coche
   if (isChangeColorActive.value) {
     a.value = Math.floor(Math.random() * couleurs.length - 1); // recuperer la valeaur aleatoire de l'index pour le d tableau de couleur
-    top.value = Math.floor(Math.random() * 250); //  changer la position de la balle au clic vers le haut de facon aleatoire entre 0 et 250
-    left.value = Math.floor(Math.random() * 250); // changer la position de la balle au clic vers la gauche de facon aleatoire entre 0 et 250
   }
 
   //appel de la fonction taille
@@ -173,7 +159,10 @@ function updateContainerCercleSize(newWidth, newHeight) {
   containerCercleHeight.value = newHeight;
 }
 
-console.log(containerCercleHeight);
+// console.log(containerCercleHeight);
+
+
+
 </script>
 
 
@@ -186,18 +175,17 @@ console.log(containerCercleHeight);
       <label for=""
         >Largeur:
         <input
-          type="number"
+          type="number" max="500"
           v-model="containerCercleWidth"
-          min="100"
           placeholder="Largeur de la zone de jeu"
         /> </label
-      ><br />
+      ><br/>
       <label for="">
         Hauteur:
         <input
           type="number"
           v-model="containerCercleHeight"
-          min="100"
+          max="600"
           placeholder="Hauteur de la zone de jeu"
         />
       </label>
@@ -304,24 +292,27 @@ console.log(containerCercleHeight);
 
 <style scoped>
 .dimensions-cercle-container {
-  display: flex;
-  flex-direction: column;
+  color: rgb(192, 245, 0);
+  font-size: 18px;
+}
+
+.dimensions-cercle-container input {
+  color: rgb(0, 45, 247);
+  margin-bottom: 20px;
+  height: 25px;
+  font-size: 18px;
+
+}
+
+.dimensions-cercle-container label {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .container-cercle {
-  /* height: 300px;
-  width: 800px; */
-  border: 5px solid rgb(89, 255, 0);
-  height: 300px;
-  width: 800px;
-  overflow: hidden; /*evite le debordement de la balle*/
-
-  padding: 10%; /* evite le debordement de la balle */
-
-  width: 600px;
-  overflow: hidden;
-  border: 1px solid darkturquoise;
-  padding: 10%;
+  padding: 30%;
+  position: relative;
 }
 
 .cercle-p {
@@ -374,7 +365,6 @@ console.log(containerCercleHeight);
 }
 
 .container {
-  width: 100%;
   height: 550px;
   background-color: #2b87d1;
   display: flex;
@@ -413,14 +403,13 @@ console.log(containerCercleHeight);
   border: 1px solid #ff000080;
   border-radius: 50%;
   width: 100px;
-  height: 100px;
+  height: 103px;
   position: relative;
-  top: 0;
-  left: 0;
-  margin: auto;
-  flex-wrap: wrap;
-  max-width: 150px;
-  overflow: initial;
+  top: 10px;
+  left: 45%;
+  /* margin: auto; */
+  max-width: 100px;
+  max-height: 100px;
 }
 
 #clicks {

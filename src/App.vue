@@ -2,15 +2,42 @@
 import { RouterLink, RouterView } from "vue-router";
 import gameArea from "@/components/gameArea.vue";
 import information from "@/components/information.vue";
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 
-const scores = ref([])
+const scores = ref([]);
 
-function sendScores(score){
-  scores.value = score
+// Charger les scores depuis le localStorage
+function loadScoresFromLocalStorage() {
+  const storedScores = localStorage.getItem('allScores');
+  if (storedScores) {
+    scores.value = JSON.parse(storedScores);
+  }
+}
+
+// Sauvegarder les scores dans le localStorage
+function saveScoresToLocalStorage(scores) {
+  localStorage.setItem('allScores', JSON.stringify(scores));
+}
+
+// Fonction pour mettre à jour les scores
+function sendScores(score) {
+  scores.value = score;
+  saveScoresToLocalStorage(scores.value);
   console.log(scores.value);
 }
+
+// Charger les scores depuis le localStorage lors du montage du composant
+onMounted(() => {
+  loadScoresFromLocalStorage();
+});
+
+// Observer les changements dans scores et sauvegarder les scores
+watch(scores, (newScores) => {
+  saveScoresToLocalStorage(newScores);
+}, { deep: true });
+
 </script>
+
 
 <template>
   <div>

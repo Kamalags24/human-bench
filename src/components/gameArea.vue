@@ -177,7 +177,7 @@ console.log(containerCercleHeight);
 
 <template>
 
-  <div class="container">
+<div class="container">
 
 
     <!-- Ajouter des champs de saisie pour les dimensions -->
@@ -234,11 +234,7 @@ console.log(containerCercleHeight);
         <div
           class="cercle"
           :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' , backgroundColor : couleurs[a],  height: height + 'px'} "
-           @click="changePosition"
-          
-
-
-        ></div>
+           @click="changePosition"></div>
       </div>
     </main>
 
@@ -252,6 +248,7 @@ console.log(containerCercleHeight);
       <button class="recom" @click="recommencer"  >Recommencer</button>
     </div>
   </div>
+</div>
 </template>
 
 

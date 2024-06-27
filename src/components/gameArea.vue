@@ -250,7 +250,7 @@ console.log(containerCercleHeight);
 
     <div v-if="!End">  <!--  div conteneur de l'espace de resultat du jeu  -->
       <div class="cercle"></div>
-      <p class="cercle-p">Temps moyen par click</p>
+      <p class="cercle-p">Temps de jeu par click</p>
       <p class="second">{{ second + " ms" }}</p> <!-- affiche le temps du dernier jeu -->
       <div>Misses : {{ misses }}</div> <!-- affiche le nombre de clics ratés -->
       <p class="save">Save your score to see how you compare</p>

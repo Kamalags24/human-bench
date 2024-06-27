@@ -33,10 +33,6 @@ const toggleColorChange = () => {
   colorChangeEnabled.value = !colorChangeEnabled.value;
 };
 
-
-
-
-
 function startGame() {
   count.value = numClicks.value
   Start.value = false;

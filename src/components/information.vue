@@ -23,16 +23,16 @@ watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynam
 <template>
   <div class="container">
     <div class="second-container">
-      <p>This is Where the Ad displays!</p>
+      <p>C'est ici qu'une autre annonce s'affiche !</p>
     </div>
     <div class="flex-container">
       <div class="third-container">
-          <h2>Aim Trainer</h2>
-          <p>Click the targets as quickly and accurately as you can.</p>
-          <p>This tests reflexes and hand-eye coordination.</p>
-          <p>Once you've clicked 30 targets, your score and average time per target will be displayed.</p>
-          <p>Scores in this test are slower than the simple reaction time test, because you must react and then move the cursor.</p>
-          <p>This test is best taken with a mouse or tablet screen. Trackpads are difficult to score well with.</p>
+          <h2>Entraîneur de visée</h2>
+          <p>Cliquez sur les cibles aussi rapidement et précisément que possible.</p>
+          <p>Cela teste les réflexes et la coordination œil-main.</p>
+          <p>Une fois que vous aurez cliqué sur 30 cibles, votre score et votre temps moyen par cible seront affichés.</p>
+          <p>Les scores de ce test sont plus lents que ceux du simple test de temps de réaction, car vous devez réagir puis déplacer le curseur.</p>
+          <p>Il est préférable de réaliser ce test avec un écran de souris ou de tablette. Il est difficile de réussir avec les trackpads.</p>
       </div>
 
       <div class="container-four">
@@ -45,7 +45,7 @@ watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynam
       </div>
     </div>
     <div class="container-five">
-  <h2>This is Where Another Ad displays!</h2>
+  <h2>C'est ici qu'une autre annonce s'affiche !</h2>
    </div>
   </div>
 

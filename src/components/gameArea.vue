@@ -1,7 +1,7 @@
 <script setup>
 import trainerArea from "./trainerArea.vue";
 import remaining from "./remaining.vue";
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 const emit = defineEmits (['updateScore'])
 
 const Start = ref(true);
@@ -23,8 +23,11 @@ let  couleurs= ['#FF5733', '#33FF57', '#3357FF', '#F833FF', '#33FFF8',
 '#5733FF', '#FF573A', '#33FF5A', '#335AFF', '#F833FA']
 let a = ref();
 let misses = ref(0) // variable pour stocker
-// const changePosition = ref(true)
-// const colorChangeEnabled = ref(true);
+
+// Propriétés réactives pour les dimensions de la zone de jeu
+let containerCercleWidth = ref(800); // Largeur par défaut
+let containerCercleHeight = ref(300); // Hauteur par défaut
+
 
 const isChangeColorActive = ref(true);
 const ischangePosition = ref(true)
@@ -43,6 +46,9 @@ function startGame() {
   Game.value = true;
   // End.value = true;
   timer();
+  nextTick(() => {
+updateContainerCercleSize(containerCercleWidth.value, containerCercleHeight.value);
+});
 }
 
 
@@ -157,12 +163,36 @@ function timer() {
 }
 
 
+
+// Fonction pour mettre à jour les dimensions
+function updateContainerCercleSize(newWidth, newHeight) {
+containerCercleWidth.value = newWidth;
+containerCercleHeight.value = newHeight;
+}
+
+
+console.log(containerCercleHeight);
+
+
 </script>
 
 
 
 <template>
   <div class="container">
+
+
+    <!-- Ajouter des champs de saisie pour les dimensions -->
+    <div v-if="Start" class="dimensions-cercle-container">
+      <h2>Veillez saisir les dimensions de votre espace de jeu:</h2>
+        <label for="">Largeur: 
+          <input type="number" v-model="containerCercleWidth"  min="100" placeholder="Largeur de la zone de jeu" />
+        </label><br>
+        <label for=""> Hauteur: 
+          <input type="number" v-model="containerCercleHeight"  min="100" placeholder="Hauteur de la zone de jeu" />
+        </label>
+    </div>
+
     <div v-if="Start">
       <h1>Bienvenue dans le jeu !</h1>
       <div class="cercle" ></div>
@@ -173,8 +203,8 @@ function timer() {
       <div class="input-button">
           <input type="number" id="clicks" v-model="numClicks" min="5" @input="validateNumClicks"><br>
           <label>
-      <input type="checkbox"  v-model="isChangeColorActive"  >
-      Activer les couleurs aléatoires
+              <input type="checkbox"  v-model="isChangeColorActive"  >
+              Activer les couleurs aléatoires
           </label>
           <div class="checkbox2">
             <input type="checkbox" v-model="ischangePosition">
@@ -184,6 +214,8 @@ function timer() {
       </div>
       
     </div>
+
+   
 
 
     <main class="zone" v-if="Game">
@@ -199,7 +231,7 @@ function timer() {
 
     
 
-      <div class="container-cercle" @click="handleMisses" >
+      <div class="container-cercle" :style="{ width: containerCercleWidth + 'px', height: containerCercleHeight + 'px' }"  @click="handleMisses"  >
         <div
           class="cercle"
           :style="{ top: top + 'px', left: left + 'px' , width: width + 'px' , backgroundColor : couleurs[a],  height: height + 'px'} "
@@ -226,15 +258,24 @@ function timer() {
 
 <style scoped>
 
+.dimensions-cercle-container {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
 .container-cercle {
 
-  height: 300px;
-  width: 800px;
+  /* height: 300px;
+  width: 800px; */
   overflow: hidden;
-  
+  border: 1px solid darkturquoise;
   padding: 10%;
 
 }
+
+
 
 .cercle-p {
   color: white;
@@ -403,71 +444,4 @@ li{
   list-style-type: none;
   gap:50 px;
 }
-/* h1 {
-  margin: 0 auto;
-  color: white;
-}
-
-.gamebutton {
-  margin-top: 30px;
-}
-
-label {
-  color: white;
-  padding-top: 29px;
-}
-
-.container {
-  background-color: #2b87d1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 500px;
-}
-
-.container p {
-  color: white;
-}
-
-input {
-  width: 300px;
-  height: 30px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  margin-top: 70px;
-}
-
-.container-cercle {
-  display: block;
-  position: relative;
-}
-
-.cercle {
-  background-color: #ff000080;
-  border: 1px solid #ff000080;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: 0;
-  left: 0;
-  margin: auto;
-}
-
-button {
-  background-color: yellow;
-  border: 1px solid yellow;
-  border-radius: 20px;
-  width: 100px;
-  height: 30px;
-}
-
-.container-cercle {
-  border: 1px solid black;
-  height: 300px;
-  width: 800px;
-} */
-</style>
+ </style>

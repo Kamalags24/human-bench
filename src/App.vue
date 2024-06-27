@@ -4,6 +4,7 @@ import gameArea from "@/components/gameArea.vue";
 import information from "@/components/information.vue";
 import { ref, onMounted, watch } from "vue";
 
+
 const scores = ref([]);
 
 // Charger les scores depuis le localStorage
@@ -21,9 +22,12 @@ function saveScoresToLocalStorage(scores) {
 
 // Fonction pour mettre à jour les scores
 function sendScores(score) {
+  console.log('fromSendscore', score);
   scores.value = score;
+ 
   saveScoresToLocalStorage(scores.value);
-  console.log(scores.value);
+
+  console.log('fromSendscore', scores.value);
 }
 
 // Charger les scores depuis le localStorage lors du montage du composant
@@ -35,6 +39,14 @@ onMounted(() => {
 watch(scores, (newScores) => {
   saveScoresToLocalStorage(newScores);
 }, { deep: true });
+
+
+// import { getAquisitionsByYear } from '@/api';
+
+
+// const data = await getAquisitionsByYear();
+ 
+
 
 </script>
 
@@ -53,8 +65,9 @@ watch(scores, (newScores) => {
     </nav>
   </div>
 
+
   <gameArea  @update-score="sendScores"/>
-  <information :scores = "scores"/>
+  <information :scores="scores" />
   <RouterView />
 </template>
 

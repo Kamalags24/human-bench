@@ -7,7 +7,7 @@ const myScores = ref([])
 
 const label = ref([])
 
-let count = ref(1)
+let count = ref(0)
 
 const props = defineProps({
   scores : {
@@ -19,7 +19,6 @@ const props = defineProps({
 
 watch(()=>props.scores,(score)=>{
   myScores.value = score
-  console.log(score);
   label.value.push(`partie ${count.value++}`)
   // chartjs();
   console.log("myScores => ", myScores.value);
@@ -29,9 +28,22 @@ watch(()=>props.scores,(score)=>{
 
 async function chartjs() {
 
-  const ctx = document.getElementById('myChartjs');
+  const canvas = document.getElementById('myChart');
 
-  new Chart(ctx,
+
+  if (Chart.instances.length > 0) {
+        Chart.instances.forEach(instance => {
+            if (instance.chart.canvas.id === 'myChart') {
+                instance.destroy();
+            }
+        });
+    }
+
+    const ctx = canvas.getContext('2d');
+
+
+  new Chart(
+    ctx,
     {
       type: 'line',
       data: {
@@ -51,18 +63,16 @@ async function chartjs() {
   );
 }
 
-// watch(() => myScores.value,  chartjs);
+watch(() => myScores.value,  chartjs);
 
 
 onMounted(() => {
-  myScores.value = JSON.parse(localStorage.getItem('allScores'))
-
+  // chartjs();
   myScores.value.forEach(partie => {
-    label.value.push(`Partie ${count.value++}`)
-    console.log(count.value);
-  });
-
-  chartjs();
+  label.value.push(`partie ${count.value++}`)
+  console.log(count.value);
+});
+  console.log(label.value);
 });
 
 </script>

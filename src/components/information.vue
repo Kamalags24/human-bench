@@ -2,17 +2,17 @@
 import { ref, onMounted, watch } from 'vue';
 
 
-const myScores = ref([])
+const myScores = ref([])  // variable pour récupérer les scores
 
-const props = defineProps({
-  scores: {
-    type: Array,
+const props = defineProps({  //cons props pour la recupération des scores depuis le composant gameArea
+  scores : {
+    type:Array,
   }
-})
+}) // cons props 
 
 
-watch(() => props.scores, (score) => {
-  myScores.value = score
+watch(()=>props.scores,(score)=>{ //watch  , observe les scores de façon dynamique et recupère les scores finaux et les affiches sur la vue App.vue
+  myScores.value = score  // dans le composant information on recupère les scores  et on les affiches sur la vue App.vue
   console.log(myScores.value);
 
   
@@ -42,9 +42,9 @@ watch(() => props.scores, (score) => {
 
       <div class="container-four">
         <h2>Scores - Meilleur Score {{ myScores[0] }} </h2>
-        <div v-for="(score, index) in myScores" :key="index">
+        <div   class="fourth-container" v-for="(score, index) in myScores" :key="index">
           <h4>Score {{ index + 1 }}: {{ score }}</h4>
-          <p> {{ bou }}</p>
+          
         </div>
 
 
@@ -83,8 +83,20 @@ watch(() => props.scores, (score) => {
   padding: 30px;
   padding-right: 20px;
   margin: 0 auto;
-
 }
+  .container-four {
+    background-color: white;
+    padding-left: 20px;
+    margin: 0 auto;
+    width: 500px;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    column-count: 2 ;
+    column-span: all;
+    
+    
+  }
 
 .container-four {
   background-color: white;
@@ -121,4 +133,15 @@ watch(() => props.scores, (score) => {
   display: flex;
   margin: 0 auto;
 }
+.fourth-container {
+  
+ 
+width: 100%; 
+height: auto;
+
+
+  
+}
+
+
 </style>

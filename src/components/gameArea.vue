@@ -36,10 +36,6 @@ const toggleColorChange = () => {
   colorChangeEnabled.value = !colorChangeEnabled.value;
 };
 
-
-
-
-
 function startGame() {
   count.value = numClicks.value
   Start.value = false;
@@ -149,6 +145,7 @@ function timer() {
       misses.value++
       
     }
+    
     // console.log(misses.value);
     // console.log(element);
     
@@ -179,6 +176,7 @@ console.log(containerCercleHeight);
 
 
 <template>
+
   <div class="container">
 
 
@@ -193,6 +191,7 @@ console.log(containerCercleHeight);
         </label>
     </div>
 
+  <div class="container" @click="handleMisses">
     <div v-if="Start">
       <h1>Bienvenue dans le jeu !</h1>
       <div class="cercle" ></div>
@@ -218,7 +217,7 @@ console.log(containerCercleHeight);
    
 
 
-    <main class="zone" v-if="Game">
+    <main class="zone" v-if="Game" >
 
       <ul class="ligne">
         <li>
@@ -269,6 +268,9 @@ console.log(containerCercleHeight);
 
   /* height: 300px;
   width: 800px; */
+border: 5px solid rgb(89, 255, 0);
+  height: 300px;
+  width: 600px;
   overflow: hidden;
   border: 1px solid darkturquoise;
   padding: 10%;
@@ -328,7 +330,7 @@ console.log(containerCercleHeight);
 
 .container {
   width: 100%;
-  height: 500px;
+  height: 550px;
   background-color: #2b87d1;
   display: flex;
   justify-content: center;

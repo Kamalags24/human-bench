@@ -150,11 +150,18 @@ function timer() {
    function stockerScore() {
     allScores.value.push(second.value); // Ajoutez le score actuel au tableau des scores
     emit('updateScore', allScores.value)
-}
+   allScores.value.sort((a,b)=> a-b)
+    console.log(allScores.value);
+    console.log([1,5,2,4,3].sort());
 
+    let best = score[0];
+    console.log(best)
+
+
+    
+  }
 
 </script>
-
 
 
 <template>

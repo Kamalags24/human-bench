@@ -26,6 +26,8 @@ function sendScores(score) {
   console.log(scores.value);
 }
 
+
+
 // Charger les scores depuis le localStorage lors du montage du composant
 onMounted(() => {
   loadScoresFromLocalStorage();
@@ -35,6 +37,11 @@ onMounted(() => {
 watch(scores, (newScores) => {
   saveScoresToLocalStorage(newScores);
 }, { deep: true });
+
+
+
+//essai
+
 
 </script>
 

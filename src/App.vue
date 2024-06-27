@@ -16,15 +16,21 @@ function loadScoresFromLocalStorage() {
 
 // Sauvegarder les scores dans le localStorage
 function saveScoresToLocalStorage(scores) {
+  console.log("saveScoresToLocalStorage", localStorage.setItem('allScores', JSON.stringify(scores)));
   localStorage.setItem('allScores', JSON.stringify(scores));
 }
 
 // Fonction pour mettre à jour les scores
 function sendScores(score) {
+  console.log('fromSendscore', score);
   scores.value = score;
+ 
   saveScoresToLocalStorage(scores.value);
-  console.log(scores.value);
+
+  console.log('fromSendscore', scores.value);
 }
+
+
 
 // Charger les scores depuis le localStorage lors du montage du composant
 onMounted(() => {
@@ -35,6 +41,14 @@ onMounted(() => {
 watch(scores, (newScores) => {
   saveScoresToLocalStorage(newScores);
 }, { deep: true });
+
+
+// import { getAquisitionsByYear } from '@/api';
+
+
+// const data = await getAquisitionsByYear();
+ 
+
 
 </script>
 

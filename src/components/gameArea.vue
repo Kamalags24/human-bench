@@ -139,6 +139,7 @@ function timer() {
       misses.value++
       
     }
+    
     // console.log(misses.value);
     // console.log(element);
     
@@ -158,7 +159,7 @@ function timer() {
 
 
 <template>
-  <div class="container">
+  <div class="container" @click="handleMisses">
     <div v-if="Start">
       <h1>Bienvenue dans le jeu !</h1>
       <div class="cercle" ></div>
@@ -182,7 +183,7 @@ function timer() {
     </div>
 
 
-    <main class="zone" v-if="Game">
+    <main class="zone" v-if="Game" >
 
       <ul class="ligne">
         <li>
@@ -223,9 +224,9 @@ function timer() {
 <style scoped>
 
 .container-cercle {
-
+border: 5px solid rgb(89, 255, 0);
   height: 300px;
-  width: 800px;
+  width: 600px;
   overflow: hidden;
   
   padding: 10%;
@@ -283,7 +284,7 @@ function timer() {
 
 .container {
   width: 100%;
-  height: 500px;
+  height: 550px;
   background-color: #2b87d1;
   display: flex;
   justify-content: center;

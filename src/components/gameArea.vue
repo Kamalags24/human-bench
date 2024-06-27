@@ -165,6 +165,12 @@ function handleMisses(element) {
 function stockerScore() {
   allScores.value.push(second.value); // ajoute le temps du dernier jeu joué au tableau des scores
   emit("updateScore", allScores.value); // envoie le tableau des scores au composant information pour les afficher dans le composant gameArea
+  allScores.value.sort((a,b)=> a-b)
+    console.log(allScores.value);
+    console.log([1,5,2,4,3].sort());
+
+    let best = score[0];
+    console.log(best)
 }
 
 // Fonction pour mettre à jour les dimensions

@@ -152,8 +152,6 @@ function timer() {
 //fonction pour recuperer les clics ratés
 
 function handleMisses(event) {
-  // Arrêtez la propagation de l'événement pour éviter un clic erroné
-  event.stopPropagation();
   
   if (Game.value && event.target.className != "cercle") {
     //si le jeu est actif et que le clique n'est fait pas  sur le cercle , on incremente le nombre de clics ratés

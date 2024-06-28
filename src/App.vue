@@ -50,7 +50,7 @@ onMounted(() => {
 
 
 <template>
-  <div>
+  <div class="borne" >
     <!--  création de la barre de navigation -->
     <nav class="barre">
       <div class="rl1">
@@ -145,7 +145,39 @@ a:hover {
     gap: 0;
     
   }
+}
+  /*mobile*/
 
+
+@media screen and (max-width: 480px) {
+  .barre {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 5px;
+    background-color: gold;
+    font-weight: bold;
+  }
+  .rl1, .rl2 {
+   
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    
+  
+    padding: 0;
+    gap: 0;
+     
+
+     
+  }
+
+.borne {
+  display: flex;
+  flex-direction: column;
+} 
 
 }
 

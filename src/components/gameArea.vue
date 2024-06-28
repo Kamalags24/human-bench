@@ -507,7 +507,7 @@ li {
   
 }
 
-/*mobile*/
+/*tablette*/
 
 @media screen and (max-width: 768px) {
 
@@ -666,8 +666,8 @@ ul {
   height: 30px;
   border: none;
   border-radius: 10px;
-  box-shadow: rgba(15, 14, 14, 0.3)0px 19px 38px,
-    rgba(196, 196, 191, 0.22) 0px 15px 12px;
+  box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
+    rgba(246, 222, 2, 0.22) 0px 15px 12px;
   /* margin-top: 70px; */
   margin-bottom: 10px;
 }
@@ -694,7 +694,148 @@ ul {
 
 
 /*mobile*/
-  
+@media screen and (max-width: 480px) {
+
+
+h1 {
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 15px;
+margin-bottom: 20px;
+}
+
+
+
+.dimensions-cercle-container {
+color: rgb(245, 16, 153);
+font-size: 10px
+}
+.dimensions-cercle-container input {
+color: rgb(0, 45, 247);
+margin-bottom: 20px;
+height: 20px;
+font-size: 15px;
+width: 50px
+
+}
+
+.dimensions-cercle-container label {
+color: rgb(16, 133, 168);
+font-size: 16px;
+font-weight: 500;
+}
+
+
+
+
+
+.cercle-p {
+color: white;
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 20px;
+margin-top: 15px;
+}
+
+.restast-button {
+margin: 0;
+padding: 10px;
+text-align: center;
+transform: translateX(5px);
+margin-top: 35px;
+color: inherit;
+background-color: yellow;
+
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+margin-right: 50px;
+}
+
+
+
+.save {
+font-family: sans-serif;
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 10px;
+margin-top: 15px;
+}
+
+.second {
+margin: 0;
+padding: 0;
+text-align: center;
+font-weight: bold;
+font-size: 20px;
+font-family: sans-serif;
+}
+
+.container {
+height: 400px;
+width: 300px;
+background-color: #2b87d1;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+margin: 0 auto;
+margin-top: 20px;
+}
+
+.recom {
+margin: 0 auto;
+padding: 10px;
+text-align: center;
+transform: translateX(3px);
+margin-top: 35px;
+color: inherit;
+background-color: rgb(70, 252, 4);
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+margin : 0 auto;
+}
+
+
+
+
+#clicks {
+width: 150px;
+height: 30px;
+border: none;
+border-radius: 10px;
+box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
+  rgba(246, 222, 2, 0.22) 0px 15px 12px;
+/* margin-top: 70px; */
+margin-bottom: 10px;
+}
+
+.label {
+margin-bottom: 8px;
+margin-top: 8px;
+font-size: 20px;
+}
+
+.gamebutton {
+color: inherit;
+background-color: rgb(255, 115, 0);
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+padding: 10px;
+margin-top: 25px;
+}
+
+
+
+}
 
 }
 </style>

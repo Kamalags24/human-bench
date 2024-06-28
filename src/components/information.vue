@@ -131,25 +131,23 @@ onMounted(() => {
 }
   .container-four {
     background-color: white;
-    padding-left: 20px;
-    margin: 0 auto;
-    width: 500px;
-    height:auto;
+    padding-left: 0px;
+    
+    width: 300px;
+    height: 300px;
     display: flex;
-    flex-direction: column;
-    column-count: 2 ;
-    column-span: all;
+    flex-direction: row;
     
     
   }
 
-.container-four {
+/* .container-four {
   background-color: white;
   padding-left: 20px;
   margin: 0 auto; 
   width: 500px;
   height: 400px;
-}
+} */
 
 .container-five {
   display: flex;
@@ -287,6 +285,110 @@ h2{
   font-size: 15px;
 }
 
+
+}
+
+
+
+/*mobile*/
+
+@media screen and (max-width: 469px) {
+
+
+
+.container {
+background-color: #e6e6e6;
+}
+
+.second-container {
+margin: 0 auto;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 300px;
+height: 150px;
+margin-top: 20px;
+margin-bottom: 20px;
+font-weight: bold;
+font-size: 15px;
+background-color: #fff;
+}
+
+.third-container {
+background-color: rgb(253, 247, 211);
+padding: 30px;
+padding-right: 2px;
+margin: 0 auto;
+
+height: auto;
+}
+.container-four {
+  background-color: white;
+  padding-left: 20px;
+  margin: 0 auto;
+  width: 500px;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  column-count: 2 ;
+  column-span: all;
+  
+  
+}
+
+.container-four {
+background-color: white;
+padding-left: 20px;
+margin: 0 auto; 
+width: 500px;
+height: 400px;
+}
+
+.container-five {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 300px;
+height: 150px;
+/* margin-top: 20px;
+margin-bottom: 20px; */
+font-weight: bold;
+font-size: 25px;
+background-color: #e8d796;
+
+
+margin: 0 auto;
+}
+
+.flex-container {
+/* display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+gap: 0px 0px;
+grid-auto-flow: row;
+grid-template-areas:
+  ". . ."
+  ". . ."
+  ". . ."; */
+
+display: flex;
+flex-direction: column;
+margin : 0 auto;
+
+}
+/* .fourth-container {
+
+
+width: 100%; 
+height: auto;
+
+
+
+} */
+
+h2{
+font-size: 15px;
+}
 
 }
 </style>

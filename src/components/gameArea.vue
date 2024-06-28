@@ -8,8 +8,10 @@ const Start = ref(true); // variable pour afficher l'espace de  démarrage du je
 const Game = ref(false); // variable pour afficher l'espace du jeu
 const End = ref(true); // variable pour afficher l'espace de resultat du jeu
 let count = ref(); // variable pour compter le nombre de clic
-let left = ref(0); //variable pour changer la position de la balle au clic vers la gauche
 let top = ref(0); //variable pour changer la position de la balle au clic vers le haut
+let right = ref(0); //variable pour changer la position de la balle au clic vers la gauche
+let bottom = ref(0); //variable pour changer la position de la balle au clic vers la gauche
+let left = ref(0); //variable pour changer la position de la balle au clic vers la gauche
 let second = ref(0); // variable pour compter le temps  en milisecond
 let score = ref(0); // variable pour stocker le score
 const numClicks = ref(5); // variable pour le nombre de clics de l'utilisateur sur la balle
@@ -90,8 +92,10 @@ function changePosition() {
   // Calculez la nouvelle position en tenant compte de la taille de la balle
  
   top.value = Math.floor(Math.random() * 100);
+  right.value = Math.floor(Math.random() *200 );
+  bottom.value = Math.floor(Math.random() *200 );
   left.value = Math.floor(Math.random() *200 );
-
+  
   //condition pour changer  la  taille de la balle au clic quand la case variation de taille est coche
   if (ischangePosition.value) {
     lon.value = Math.floor(Math.random() * 200);
@@ -154,7 +158,6 @@ function stockerScore() {
   allScores.value.push(second.value); // ajoute le temps du dernier jeu joué au tableau des scores
   emit("updateScore", allScores.value); // envoie le tableau des scores au composant information pour les afficher dans le composant gameArea
   allScores.value.sort((a, b) => a - b);
-  console.log(allScores.value);
 }
 
 
@@ -180,22 +183,25 @@ function stockerScore() {
             @input="validateNumClicks"
           /><br />
           <!-- entre du nombre de clics  que l'on veut faire dans la partie-->
-          <label>
+          
             <ul>
               <li>
-                <input type="checkbox" v-model="isChangeColorActive" />
+                <div>
+                  <label for="1">Activer les couleurs aléatoires</label>
+                  <input type="checkbox" v-model="isChangeColorActive" id="1"/>
+                </div>
                 <!-- coche pour changer la couleur de la balle-->
-                Activer les couleurs aléatoires
               </li>
+
               <li>
-                <input type="checkbox" v-model="ischangePosition" />
+                <div>
+                  <label for="2">Variation de la taille de la boule</label>
+                  <input type="checkbox" v-model="ischangePosition" id="2">
+                </div>
                 <!-- coche pour changer la taille de la balle au clic -->
-                <label for="checkbox2"
-                  >Variation de la taille de la boule</label
-                >
               </li>
             </ul>
-          </label>
+          
           <button
             @click="startGame"
             :disabled="numClicks < 5" 
@@ -231,6 +237,8 @@ function stockerScore() {
             class="cercle"
             :style="{
               top: top + 'px',
+              right: right + 'px',
+              bottom: bottom + 'px',
               left: left + 'px',
               width: width + 'px',
               backgroundColor: couleurs[a],
@@ -249,6 +257,7 @@ function stockerScore() {
         <p class="cercle-p">Temps de jeu par click</p>
         <p class="second">{{ second + " ms" }}</p>
         <!-- affiche le temps du dernier jeu -->
+         <h4 v-for="(score, index) in allScores " :key="index">{{ score }}</h4>
         <div>Misses : {{ misses }}</div>
         <!-- affiche le nombre de clics ratés -->
         <p class="save">Save your score to see how you compare</p>
@@ -381,6 +390,33 @@ ul {
 }
 
 
+label {
+  margin-right: 15px;
+}
+
+
+.input-button input {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 15px;
+  height: 17px;
+  width: 20px;
+
+}
+
+.input-button li {
+display: flex;
+text-align: center;
+align-items: center;
+align-content: center;
+}
+.input-button label {
+  font-size: 18px;
+}
+
+
+
 
 .cercle {
   background-color: #ff000080;
@@ -390,10 +426,11 @@ ul {
   height: 103px;
   position: relative;
   top: 10px;
+  right: 10px;
   left: 38%;
-  /* margin: auto; */
-  max-width: 100px;
-  max-height: 100px;
+  margin-bottom: 15px;
+  /* max-width: 100px;
+  max-height: 100px; */
 }
 
 #clicks {

@@ -35,6 +35,7 @@ async function chartjs() {
       labels: label.value,
       datasets: [
         {
+          title : "Statistiques"
           label: `Score - Meilleur score ${myScores.value[0]}`,
           data: myScores.value,
           borderColor: "rgb(43,135,209)",
@@ -99,7 +100,10 @@ onMounted(() => {
       </div>
     </div>
     <div class="graph">
-      <div><canvas id="myChartjs"></canvas></div>
+      <div>
+        <h3>Statistiques</h3>
+        <canvas id="myChartjs"></canvas>
+      </div>
     </div>
   </div>
 </template>

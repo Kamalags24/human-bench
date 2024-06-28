@@ -35,7 +35,7 @@ async function chartjs() {
       labels: label.value,
       datasets: [
         {
-          label: `Score - Meilleur score ${myScores.value[0]}`,
+          label: `Score - Meilleur score ${myScores.value[0]} ms`,
           data: myScores.value,
           borderColor: "rgb(43,135,209)",
           tension: 0.5,
@@ -60,11 +60,12 @@ onMounted(() => {
     label.value.push(
       `Partie ${count.value <= myScores.value.length ? count.value++ : ""}`
     );
-    console.log(count.value);
+  
   });
 
   chartjs();
 });
+
 </script>
 
 <template>
@@ -93,8 +94,8 @@ onMounted(() => {
             tablette. Il est difficile de réussir avec les trackpads.
           </p>
         </div>
-        <div class="graph third-container">
-          <div><canvas id="myChartjs"></canvas></div>
+        <div class=" third-container">
+          <div class="graph"><canvas id="myChartjs"></canvas></div>
         </div>
       </div>
 
@@ -148,6 +149,7 @@ text-align: center;
   text-align: justify;
   padding-inline: 2rem;
 }
+
 
 
 </style>

@@ -88,10 +88,6 @@ onMounted(() => {
       </div>
 
       <div class="container-four">
-        <!-- <h2>Scores - Meilleur Score {{ myScores[0] }} </h2> -->
-        <!-- <div v-for="(score, index) in myScores" :key="index">
-              <h4>Score {{ index + 1 }}: {{ score }}</h4>
-          </div> -->
           <div ><canvas id="myChartjs"></canvas></div>
           <!-- <img src="/public/statt.png" alt=""> -->
       </div>
@@ -165,15 +161,6 @@ onMounted(() => {
 }
 
 .flex-container {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    ". . ."
-    ". . ."
-    ". . ."; */
 
   display: flex;
   margin: 0 auto;

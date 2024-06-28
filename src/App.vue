@@ -30,7 +30,7 @@ function sendScores(score) { //score est le tableau de scores que l'enfant envoi
  
   saveScoresToLocalStorage(scores.value);
 
-  // console.log('fromSendscore', scores.value);
+ 
 }
 
 
@@ -39,12 +39,6 @@ function sendScores(score) { //score est le tableau de scores que l'enfant envoi
 onMounted(() => {
   loadScoresFromLocalStorage();
 });
-
-// Observer les changements dans scores et sauvegarder les scores
-// watch(scores, (newScores) => {
-//   saveScoresToLocalStorage(newScores);
-// }, { deep: true });
-
 
 </script>
 

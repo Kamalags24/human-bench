@@ -203,7 +203,7 @@ function updateContainerCercleSize(newWidth, newHeight) {
       <br />
     </div>
 
-    <div class="container" @click="handleMisses">
+    <div class="container">
       <div v-if="Start">
         <h1>Bienvenue dans le jeu !</h1>
         <div class="cercle"></div>
@@ -269,6 +269,7 @@ function updateContainerCercleSize(newWidth, newHeight) {
             width: containerCercleWidth + 'px',
             height: containerCercleHeight + 'px',
           }"
+           @click="handleMisses"
         >
           <div
             class="cercle"
@@ -426,10 +427,7 @@ ul {
   text-align: center;
 }
 
-/* main h1  {
-  margin-bottom: 100px;
- 
-} */
+
 
 .cercle {
   background-color: #ff000080;
@@ -478,9 +476,7 @@ ul {
 }
 
 .zone {
-  /* display: flex;
-justify-content: center; */
-
+ 
   color: white;
 
   /* font-size: 22px; */

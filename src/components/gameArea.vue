@@ -161,6 +161,11 @@ function stockerScore() {
 }
 
 
+
+
+
+  
+
 </script>
 
 
@@ -258,8 +263,8 @@ function stockerScore() {
         <p class="cercle-p">Temps de jeu par click</p>
         <p class="second">{{ second + " ms" }}</p>
         <!-- affiche le temps du dernier jeu -->
-         <h4 v-for="(score, index) in allScores " :key="index">{{ score }}</h4>
-        <div>Misses : {{ misses }}</div>
+        <h4 class="misses">Misses : {{ misses }}</h4>
+        <h4 class="best">Meilleur score: {{ allScores[0] }} ms</h4>
         <!-- affiche le nombre de clics ratés -->
         <p class="save">Save your score to see how you compare</p>
         <button class="restast-button" @click="restartGame">Reprendre</button>
@@ -485,9 +490,20 @@ span {
   /* justify-content: center; */
 }
 
-h4 {
-  color: red;
+.misses {
+  color: rgb(245, 77, 77);
+  font-weight: 600;
+
+
+  
 }
+
+.best {
+  color: rgb(25, 255, 25);
+  font-weight: 600;
+}
+
+
 .ligne {
   display: flex;
   justify-content: space-around; /* aligner les éléments sur la même ligne  et séparer les éléments  d'une marge */

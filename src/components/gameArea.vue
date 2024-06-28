@@ -13,22 +13,39 @@ let top = ref(0); //variable pour changer la position de la balle au clic vers l
 let second = ref(0); // variable pour compter le temps  en milisecond
 let score = ref(0); // variable pour stocker le score
 const numClicks = ref(5); // variable pour le nombre de clics de l'utilisateur sur la balle
-let width = ref(650); //variable pour changer la taille de la balle à chaque clic
-let height = ref(350); //variable pour changer la hauteur de la balle à chaque clic
+let width = ref(65); //variable pour changer la taille de la balle à chaque clic
+let height = ref(65); //variable pour changer la hauteur de la balle à chaque clic
 let lon = ref(); // variable aléatoire  ajouté  pour changer la taille de la balle à chaque clic
 let allScores = ref([]); // tableau pour stocker le temps mis par l'utilisateur à la fin du jeu
-let couleurs = ["#FF5733","#33FF57","#3357FF","#F833FF","#33FFF8","#FFFF33","#FF33F8","#33FFFB",
-"#FF8333","#33FF83","#3373FF","#F883FF","#3383FF","#FF3383","#83FF33","#5733FF",
-  "#FF573A","#33FF5A","#335AFF","#F833FA"]; // tableau de couleur
+let couleurs = [
+  "#FF5733",
+  "#33FF57",
+  "#3357FF",
+  "#F833FF",
+  "#33FFF8",
+  "#FFFF33",
+  "#FF33F8",
+  "#33FFFB",
+  "#FF8333",
+  "#33FF83",
+  "#3373FF",
+  "#F883FF",
+  "#3383FF",
+  "#FF3383",
+  "#83FF33",
+  "#5733FF",
+  "#FF573A",
+  "#33FF5A",
+  "#335AFF",
+  "#F833FA",
+]; // tableau de couleur
 
 let a = ref(); // variable parcourir le tableau de couleur de façon aleatoire
 let misses = ref(0); // variable pour compter le nombre de clics ratés
-// const changePosition = ref(true)
-// const colorChangeEnabled = ref(true);
 
 // Propriétés réactives pour les dimensions de la zone de jeu
-let containerCercleWidth = ref(100); // Largeur par défaut
-let containerCercleHeight = ref(100); // Hauteur par défaut
+let containerCercleWidth = ref(400); // Largeur par défaut
+let containerCercleHeight = ref(200); // Hauteur par défaut
 
 const isChangeColorActive = ref(true); // variable pour changer la couleur de la balle si l'utilisateur coche la case changement ou variation de couleur au clic
 const ischangePosition = ref(true); // variable pour changer la position de la balle au clic si l'utilisateur coche la case variation de position
@@ -40,11 +57,9 @@ const toggleColorChange = () => {
 // fonction pour commencer le jeu et afficher l'espace de jeu au clic sur le bouton commencer
 function startGame() {
   count.value = numClicks.value; // affecte le nombre de clic sur la balle au compteur
+  misses.value = 0; //initialise le nombre de clic ratés à 0
   Start.value = false;
   Game.value = true;
-  misses.value = 0; //initialise le nombre de clic ratés à 0
-
-  // End.value = true;
   timer();
   nextTick(() => {
     updateContainerCercleSize(
@@ -59,9 +74,9 @@ function restartGame() {
   second.value = 0; //initialise le temps à 0
   count.value = numClicks.value; // affecte le nombre de clic sur la balle au compteur
   Start.value = false;
+  misses.value = 0; //initialise le nombre de clic ratés à 0
   Game.value = true;
   End.value = true;
-  misses.value = 0; //initialise le nombre de clic ratés à 0
   timer(); //appelle la fonction timer
 }
 
@@ -119,7 +134,6 @@ function taille() {
     height.value = 60;
   }
 
-  console.log(lon.value);
 }
 
 //la fonction timer permet de compter le temps et est lancée au demarrage du jeu
@@ -137,22 +151,23 @@ function timer() {
 
 //fonction pour recuperer les clics ratés
 
-function handleMisses(element) {
-  if (Game.value && element.target.className != "cercle") {
+function handleMisses(event) {
+  // Arrêtez la propagation de l'événement pour éviter un clic erroné
+  event.stopPropagation();
+  
+  if (Game.value && event.target.className != "cercle") {
     //si le jeu est actif et que le clique n'est fait pas  sur le cercle , on incremente le nombre de clics ratés
-   misses.value++;
+    misses.value++;
   }
 
-  // console.log(misses.value);
-  // console.log(element);
 }
 
 //fonction pour stocker les scores
 function stockerScore() {
   allScores.value.push(second.value); // ajoute le temps du dernier jeu joué au tableau des scores
   emit("updateScore", allScores.value); // envoie le tableau des scores au composant information pour les afficher dans le composant gameArea
-  allScores.value.sort((a,b)=> a-b)
-    console.log(allScores.value);
+  allScores.value.sort((a, b) => a - b);
+  console.log(allScores.value);
 }
 
 // Fonction pour mettre à jour les dimensions
@@ -160,36 +175,34 @@ function updateContainerCercleSize(newWidth, newHeight) {
   containerCercleWidth.value = newWidth;
   containerCercleHeight.value = newHeight;
 }
-
-
-
 </script>
 
-
 <template>
-  <div class="container1">
-      <!-- Ajouter des champs de saisie pour les dimensions -->
-      <div v-if="Start" class="dimensions-cercle-container">
-        <h2>Veillez saisir les dimensions de votre espace de jeu:</h2>
-        <label for=""
-          >Largeur:
-          <input
-            type="number"
-            v-model="containerCercleWidth"
-            min="100"
-            placeholder="Largeur de la zone de jeu"
-          /> </label
-        ><br />
-        <label for="">Hauteur:
-          
-          <input
-            type="number"
-            v-model="containerCercleHeight"
-            max="500"
-            placeholder="Hauteur de la zone de jeu"
-          />
-        </label>
-        <br />
+  <div class="wrap">
+    <!-- Ajouter des champs de saisie pour les dimensions -->
+    <div v-if="Start" class="dimensions-cercle-container">
+      <h2>Veillez saisir les dimensions de votre espace de jeu:</h2>
+      <label for="largeur"
+        >Largeur:
+        <input
+          type="number"
+          v-model="containerCercleWidth"
+          min="100"
+          max="446"
+          placeholder="Largeur de la zone de jeu"
+        /> </label
+      ><br />
+      <label for="hauteur"
+        >Hauteur:
+        <input
+          type="number"
+          v-model="containerCercleHeight"
+          min="100"
+          max="225"
+          placeholder="Hauteur de la zone de jeu"
+        />
+      </label>
+      <br />
     </div>
 
     <div class="container" @click="handleMisses">
@@ -219,13 +232,17 @@ function updateContainerCercleSize(newWidth, newHeight) {
               <li>
                 <input type="checkbox" v-model="ischangePosition" />
                 <!-- coche pour changer la taille de la balle au clic -->
-                <label for="checkbox2">Variation de la taille de la boule</label>
-              </li> 
+                <label for="checkbox2"
+                  >Variation de la taille de la boule</label
+                >
+              </li>
             </ul>
           </label>
           <button
             @click="startGame"
-            :disabled="numClicks < 5"
+            :disabled="numClicks < 5
+             || containerCercleHeight<100 ||  containerCercleHeight>225 
+             || containerCercleWidth <100 ||  containerCercleWidth>446" 
             class="gamebutton"
           >
             Commencer le jeu
@@ -248,15 +265,12 @@ function updateContainerCercleSize(newWidth, newHeight) {
           </li>
         </ul>
 
-        <!-- <div class="container-cercle" @click="handleMisses" >  div conteneur du l'espace du jeu qui prent en compte les clics ratés -->
-
         <div
           class="container-cercle"
           :style="{
             width: containerCercleWidth + 'px',
             height: containerCercleHeight + 'px',
           }"
-          @click="handleMisses"
         >
           <div
             class="cercle"
@@ -292,9 +306,7 @@ function updateContainerCercleSize(newWidth, newHeight) {
   </div>
 </template>
 
-
 <style scoped>
-
 h1 {
   margin: 0;
   padding: 0;
@@ -324,7 +336,6 @@ ul {
   margin-bottom: 20px;
   height: 25px;
   font-size: 18px;
-
 }
 
 .dimensions-cercle-container label {
@@ -337,7 +348,6 @@ ul {
   padding: 30%;
   position: relative;
   border: 1px solid red;
-
 }
 
 .cercle-p {
@@ -502,9 +512,7 @@ li {
   gap: 50 px;
 }
 
-.container1 {
+.wrap {
   text-align: center;
-  
 }
-
 </style>

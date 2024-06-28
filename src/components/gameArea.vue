@@ -13,8 +13,8 @@ let top = ref(0); //variable pour changer la position de la balle au clic vers l
 let second = ref(0); // variable pour compter le temps  en milisecond
 let score = ref(0); // variable pour stocker le score
 const numClicks = ref(5); // variable pour le nombre de clics de l'utilisateur sur la balle
-let width = ref(50); //variable pour changer la taille de la balle à chaque clic
-let height = ref(50); //variable pour changer la hauteur de la balle à chaque clic
+let width = ref(650); //variable pour changer la taille de la balle à chaque clic
+let height = ref(350); //variable pour changer la hauteur de la balle à chaque clic
 let lon = ref(); // variable aléatoire  ajouté  pour changer la taille de la balle à chaque clic
 let allScores = ref([]); // tableau pour stocker le temps mis par l'utilisateur à la fin du jeu
 let couleurs = ["#FF5733","#33FF57","#3357FF","#F833FF","#33FFF8","#FFFF33","#FF33F8","#33FFFB",
@@ -336,6 +336,8 @@ ul {
 .container-cercle {
   padding: 30%;
   position: relative;
+  border: 1px solid red;
+
 }
 
 .cercle-p {

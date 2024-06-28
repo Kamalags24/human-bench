@@ -44,9 +44,6 @@ let a = ref(); // variable parcourir le tableau de couleur de façon aleatoire
 let misses = ref(0); // variable pour compter le nombre de clics ratés
 
 // Propriétés réactives pour les dimensions de la zone de jeu
-let containerCercleWidth = ref(600); // Largeur par défaut
-let containerCercleHeight = ref(200); // Hauteur par défaut
-
 const isChangeColorActive = ref(true); // variable pour changer la couleur de la balle si l'utilisateur coche la case changement ou variation de couleur au clic
 const ischangePosition = ref(true); // variable pour changer la position de la balle au clic si l'utilisateur coche la case variation de position
 
@@ -61,12 +58,6 @@ function startGame() {
   Start.value = false;
   Game.value = true;
   timer();
-  nextTick(() => {
-    updateContainerCercleSize(
-      containerCercleWidth.value,
-      containerCercleHeight.value
-    );
-  });
 }
 
 // fonction pour recommencer le jeu au clic sur le bouton reprendre
@@ -97,11 +88,9 @@ function changePosition() {
   }
 
   // Calculez la nouvelle position en tenant compte de la taille de la balle
-  const maxTop = containerCercleHeight.value - height.value;
-  const maxLeft = containerCercleWidth.value - width.value;
-
-  top.value = Math.floor(Math.random() * maxTop);
-  left.value = Math.floor(Math.random() * maxLeft);
+ 
+  top.value = Math.floor(Math.random() * 100);
+  left.value = Math.floor(Math.random() *200 );
 
   //condition pour changer  la  taille de la balle au clic quand la case variation de taille est coche
   if (ischangePosition.value) {
@@ -168,11 +157,7 @@ function stockerScore() {
   console.log(allScores.value);
 }
 
-// Fonction pour mettre à jour les dimensions
-function updateContainerCercleSize(newWidth, newHeight) {
-  containerCercleWidth.value = newWidth;
-  containerCercleHeight.value = newHeight;
-}
+
 </script>
 
 <template>
@@ -225,23 +210,21 @@ function updateContainerCercleSize(newWidth, newHeight) {
       <main class="zone" v-if="Game">
         <!--  div conteneur de l'espace du jeu  -->
 
-        <ul class="ligne">
-          <li>
-            <p>Remaining: {{ count }}</p>
-            <!--affiche le nombre de clics restant-->
-          </li>
-          <li>
-            <p>Misses: {{ misses }}</p>
-            <!--affiche le nombre de clics ratés-->
-          </li>
-        </ul>
+        <div  class="ligne">
+          <ul>
+            <li>
+              <p>Remaining: {{ count }}</p>
+              <!--affiche le nombre de clics restant-->
+            </li>
+            <li>
+              <p>Misses: {{ misses }}</p>
+              <!--affiche le nombre de clics ratés-->
+            </li>
+          </ul>
+        </div>
 
         <div
           class="container-cercle"
-          :style="{
-            width: containerCercleWidth + 'px',
-            height: containerCercleHeight + 'px',
-          }"
            @click="handleMisses"
         >
           <div
@@ -279,6 +262,12 @@ function updateContainerCercleSize(newWidth, newHeight) {
 </template>
 
 <style scoped>
+
+
+* {
+  box-sizing: border-box;
+}
+
 h1 {
   margin: 0;
   padding: 0;
@@ -298,28 +287,17 @@ ul {
   justify-content: center;
 }
 
-.dimensions-cercle-container {
-  color: rgb(192, 245, 0);
-  font-size: 18px;
+.ligne ul li {
+  display: inline-block;
+  padding: 30px;
 }
 
-.dimensions-cercle-container input {
-  color: rgb(0, 45, 247);
-  margin-bottom: 20px;
-  height: 25px;
-  font-size: 18px;
-}
-
-.dimensions-cercle-container label {
-  color: rgb(16, 133, 168);
-  font-size: 20px;
-  font-weight: 700;
-}
 
 .container-cercle {
   padding: 30%;
-  position: relative;
-  border: 1px solid red;
+  width: 550px;
+  
+
 }
 
 .cercle-p {
@@ -372,11 +350,11 @@ ul {
 }
 
 .container {
+  width: 100%;
   height: 550px;
   background-color: #2b87d1;
   display: flex;
   justify-content: center;
-  border: 2px solid red;
   align-items: center;
   align-content: center;
   color: white;
@@ -452,9 +430,9 @@ ul {
 
 .zone {
  
-  color: white;
-
-  /* font-size: 22px; */
+ color: white;
+ display: flex;
+ flex-direction: column;
 }
 
 span {

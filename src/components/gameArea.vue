@@ -163,6 +163,7 @@ function stockerScore() {
 
 </script>
 
+
 <template>
   <div class="wrap">
    

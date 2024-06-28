@@ -377,7 +377,7 @@ ul {
   padding: 0;
   text-align: center;
   font-size: 20px;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .second {
@@ -507,4 +507,194 @@ li {
   
 }
 
+/*mobile*/
+
+@media screen and (max-width: 768px) {
+
+
+  h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+li {
+  padding: 0px;
+  margin: 10px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.dimensions-cercle-container {
+  color: rgb(245, 16, 153);
+  font-size: 12px;
+}
+
+.dimensions-cercle-container input {
+  color: rgb(0, 45, 247);
+  margin-bottom: 20px;
+  height: 20px;
+  font-size: 18px;
+  width: 100px
+
+}
+
+.dimensions-cercle-container label {
+  color: rgb(16, 133, 168);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.container-cercle {
+  padding: 30%;
+  position: relative;
+  border: 1px solid red;
+
+}
+
+.cercle-p {
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.restast-button {
+  margin: 0;
+  padding: 13px;
+  text-align: center;
+  transform: translateX(13px);
+  margin-top: 35px;
+  color: inherit;
+  background-color: yellow;
+
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.restast-button:hover {
+  cursor: pointer; /*fait pointer le bouton */
+}
+
+.recom:hover {
+  cursor: pointer; /*fait pointer le bouton */
+}
+
+.save {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.second {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 500px;
+  width: 380px;
+  background-color: #2b87d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.recom {
+  margin: 0 auto;
+  padding: 13px;
+  text-align: center;
+  transform: translateX(13px);
+  margin-top: 35px;
+  color: inherit;
+  background-color: rgb(70, 252, 4);
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+ margin : 0 auto;
+}
+
+.input-button {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* main h1  {
+  margin-bottom: 100px;
+ 
+} */
+
+.cercle {
+  background-color: #ff000080;
+  border: 1px solid #ff000080;
+  border-radius: 50%;
+  width: 100px;
+  height: 103px;
+  position: relative;
+  top: 10px;
+  left: 38%;
+  /* margin: auto; */
+  max-width: 100px;
+  max-height: 100px;
+}
+
+#clicks {
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(15, 14, 14, 0.3)0px 19px 38px,
+    rgba(196, 196, 191, 0.22) 0px 15px 12px;
+  /* margin-top: 70px; */
+  margin-bottom: 10px;
+}
+
+.label {
+  margin-bottom: 8px;
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.gamebutton {
+  color: inherit;
+  background-color: rgb(255, 115, 0);
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 25px;
+}
+
+
+
+
+
+/*mobile*/
+  
+
+}
 </style>

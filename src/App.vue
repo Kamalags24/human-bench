@@ -63,6 +63,11 @@ onMounted(() => {
       </div>
     </nav>
   </div>
+
+
+
+  
+
 <!-- Dans le composant gameArea on appel la fonction sendScores et on récupere les scores de manière dynamique -->
   <gameArea  @update-score="sendScores"/>
   <!-- Dans le composant information on affiche les scores de façon dynamique-->
@@ -80,6 +85,7 @@ onMounted(() => {
   gap: 20%;
   font-size: 20px;
   margin: 18px;
+  
 }
 
 /* div style */
@@ -104,7 +110,7 @@ onMounted(() => {
 
 
 a {
- color: black;
+ color: rgb(9, 9, 9);
 text-decoration: none;
 padding: 10px;
 
@@ -114,5 +120,34 @@ a:hover {
   background-color: #e6e6e6;
   
 }
+
+/*tablette*/
+
+
+@media screen and (max-width: 768px) {
+  .barre {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 9px;
+    background-color: gold;
+  }
+  .rl1, .rl2 {
+   
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    
+  }
+
+
+}
+
 
 </style>

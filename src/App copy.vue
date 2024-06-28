@@ -62,6 +62,9 @@ onMounted(() => {
       </div>
     </nav>
   </div>
+
+
+
 <!-- Dans le composant gameArea on appel la fonction sendScores et on récupere les scores de manière dynamique -->
   <gameArea  @update-score="sendScores"/>
   <!-- Dans le composant information on affiche les scores de façon dynamique-->
@@ -79,6 +82,8 @@ onMounted(() => {
   gap: 20%;
   font-size: 20px;
   margin: 18px;
+  background-color: aqua;
+  
 }
 
 /* div style */
@@ -113,5 +118,7 @@ a:hover {
   background-color: #e6e6e6;
   
 }
+
+
 
 </style>

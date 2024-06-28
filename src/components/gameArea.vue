@@ -167,7 +167,7 @@ function stockerScore() {
       <div v-if="Start">
         <h1>Bienvenue dans le jeu !</h1>
         <div class="cercle"></div>
-        <p>
+        <p id="choix">
           Choisissez le nombre de cible et atteigner le, le plus vite possible !
         </p>
         <!-- <input type="number"> -->
@@ -487,30 +487,13 @@ ul {
   justify-content: center;
 }
 
-.dimensions-cercle-container {
-  color: rgb(245, 16, 153);
-  font-size: 12px;
-}
 
-.dimensions-cercle-container input {
-  color: rgb(0, 45, 247);
-  margin-bottom: 20px;
-  height: 20px;
-  font-size: 18px;
-  width: 100px
 
-}
-
-.dimensions-cercle-container label {
-  color: rgb(16, 133, 168);
-  font-size: 20px;
-  font-weight: 500;
-}
 
 .container-cercle {
-  padding: 30%;
+  padding: 10%;
   position: relative;
-  border: 1px solid red;
+  width: 80%;
 
 }
 
@@ -527,7 +510,7 @@ ul {
   margin: 0;
   padding: 13px;
   text-align: center;
-  transform: translateX(13px);
+  transform: translateX(3px);
   margin-top: 35px;
   color: inherit;
   background-color: yellow;
@@ -552,7 +535,7 @@ ul {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-size: 10px;
+  font-size: 20px;
   margin-top: 15px;
 }
 
@@ -561,30 +544,30 @@ ul {
   padding: 0;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 40px;
   font-family: sans-serif;
 }
 
 .container {
-  height: 500px;
-  width: 380px;
-  background-color: #2b87d1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin: 0 auto;
-  margin-top: 20px;
+
+width: 100%;
+background-color: #2b87d1;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+margin: 0 auto;
+margin-top: 20px;
 }
 
 .recom {
   margin: 0 auto;
   padding: 13px;
   text-align: center;
-  transform: translateX(13px);
+  transform: translateX(20px);
   margin-top: 35px;
   color: inherit;
-  background-color: rgb(70, 252, 4);
+  background-color: yellow;
   border-radius: 10px;
   border: none;
   color: black;
@@ -607,14 +590,16 @@ ul {
   background-color: #ff000080;
   border: 1px solid #ff000080;
   border-radius: 50%;
-  width: 100px;
-  height: 103px;
+  width: 85px;
+  height: 82px;
   position: relative;
   top: 10px;
   left: 38%;
   /* margin: auto; */
   max-width: 100px;
   max-height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #clicks {
@@ -622,21 +607,18 @@ ul {
   height: 30px;
   border: none;
   border-radius: 10px;
-  box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
-    rgba(246, 222, 2, 0.22) 0px 15px 12px;
+  box-shadow: rgba(8, 8, 8, 0.3) 0px 19px 38px,
+    rgba(6, 6, 6, 0.22) 0px 15px 12px;
   /* margin-top: 70px; */
   margin-bottom: 10px;
+  margin-top: 15px;
 }
 
-.label {
-  margin-bottom: 8px;
-  margin-top: 8px;
-  font-size: 20px;
-}
+
 
 .gamebutton {
   color: inherit;
-  background-color: rgb(255, 115, 0);
+  background-color: yellow;
   border-radius: 10px;
   border: none;
   color: black;
@@ -645,8 +627,16 @@ ul {
   margin-top: 25px;
 }
 
+.cercle-p {
+color: white;
+margin: 0;
+padding: 10px;
+text-align: center;
+font-size: 30px;
+margin-top: 15px;
+}
 
-
+}
 
 
 /*mobile*/
@@ -663,33 +653,11 @@ margin-bottom: 20px;
 
 
 
-.dimensions-cercle-container {
-color: rgb(245, 16, 153);
-font-size: 10px
-}
-.dimensions-cercle-container input {
-color: rgb(0, 45, 247);
-margin-bottom: 20px;
-height: 20px;
-font-size: 15px;
-width: 50px
-
-}
-
-.dimensions-cercle-container label {
-color: rgb(16, 133, 168);
-font-size: 16px;
-font-weight: 500;
-}
-
-
-
-
 
 .cercle-p {
 color: white;
 margin: 0;
-padding: 0;
+padding: 10px;
 text-align: center;
 font-size: 20px;
 margin-top: 15px;
@@ -699,7 +667,7 @@ margin-top: 15px;
 margin: 0;
 padding: 10px;
 text-align: center;
-transform: translateX(5px);
+transform: translateX(13px);
 margin-top: 35px;
 color: inherit;
 background-color: yellow;
@@ -718,7 +686,7 @@ font-family: sans-serif;
 margin: 0;
 padding: 0;
 text-align: center;
-font-size: 10px;
+font-size: 12px;
 margin-top: 15px;
 }
 
@@ -727,13 +695,13 @@ margin: 0;
 padding: 0;
 text-align: center;
 font-weight: bold;
-font-size: 20px;
+font-size: 35px;
 font-family: sans-serif;
 }
 
 .container {
-height: 400px;
-width: 300px;
+
+width: 100%;
 background-color: #2b87d1;
 display: flex;
 justify-content: center;
@@ -747,10 +715,10 @@ margin-top: 20px;
 margin: 0 auto;
 padding: 10px;
 text-align: center;
-transform: translateX(3px);
+transform: translateX(13px);
 margin-top: 35px;
 color: inherit;
-background-color: rgb(70, 252, 4);
+background-color: yellow;
 border-radius: 10px;
 border: none;
 color: black;
@@ -766,21 +734,16 @@ width: 150px;
 height: 30px;
 border: none;
 border-radius: 10px;
-box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
-  rgba(246, 222, 2, 0.22) 0px 15px 12px;
-/* margin-top: 70px; */
-margin-bottom: 10px;
+box-shadow: rgba(8, 8, 8, 0.3) 0px 19px 38px,
+  rgba(3, 3, 3, 0.22) 0px 15px 12px;
+margin-top: 10px;
+margin-bottom: 20px;
 }
 
-.label {
-margin-bottom: 8px;
-margin-top: 8px;
-font-size: 20px;
-}
 
 .gamebutton {
 color: inherit;
-background-color: rgb(255, 115, 0);
+background-color:yellow;
 border-radius: 10px;
 border: none;
 color: black;
@@ -789,9 +752,34 @@ padding: 10px;
 margin-top: 25px;
 }
 
+.cercle {
+ 
 
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  top: 10px;
+  left: 38%;
+  /* margin: auto; */
+  max-width: 80px;
+  max-height: 80px;
+  margin-bottom: 20px;
+}
+
+#choix{
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 10px;
+  /* margin-left: 10px; */
+}
+}
+
+.container-cercle {
+  padding: 30%;
+  width: 100%;
+  
 
 }
 
-}
 </style>

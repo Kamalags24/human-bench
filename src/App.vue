@@ -124,8 +124,8 @@ a:hover {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    font-size: 9px;
-    background-color: gold;
+    font-size: 15px;
+    
   }
   .rl1, .rl2 {
    
@@ -149,11 +149,10 @@ a:hover {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    font-size: 5px;
-    background-color: gold;
+    font-size: 12px;
     font-weight: bold;
   }
-  .rl1, .rl2 {
+  .rl1{
    
     display: flex;
     flex-direction: column;
@@ -161,19 +160,42 @@ a:hover {
     align-items: center;
     
   
-    padding: 0;
-    gap: 0;
+    padding: 10px;
+    gap: 10px;
      
 
      
   }
 
+  .rl2{
+   
+   display: flex;
+   flex-direction: column;
+
+   align-items: center;
+   
+ 
+   padding: 10px;
+   gap: 10px;
+    
+    
+ }
+
 .borne {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
 } 
 
+.l1{
+  margin-left: 20PX;
 }
 
+a {
+  
+  padding: 3px;
+}
 
+}
 </style>

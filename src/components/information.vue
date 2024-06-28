@@ -149,5 +149,98 @@ text-align: center;
   padding-inline: 2rem;
 }
 
+@media screen and (max-width: 768px) {
 
+  .container {
+  width: 100%;
+  margin: auto
+
+}
+
+h2 {
+  text-align: center;
+  padding-block: 2.5rem;
+}
+
+h3 {
+text-align: center;
+}
+
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+
+.annonce {
+  background-color: #fff;
+  margin-block: 1.5rem;
+  width: 90%;
+  border-radius: 15px;
+  margin: 20px auto;
+}
+.third-container {
+  background-color: #fff;
+  height: auto;
+  width: 300px;
+  line-height: 2.5rem;
+  border-radius: 25px;
+  padding-inline: 10px;
+  text-align: justify;
+  padding-inline: 2rem;
+}
+
+
+
+}
+
+/*mobile*/
+
+@media screen and (max-width: 469px) {
+
+.container {
+width: 300px;
+margin: auto;
+
+}
+
+.flex-container {
+ display:block ;
+ margin-bottom: 20px;
+
+}
+
+
+.annonce {
+background-color: #fff;
+margin-block: 1.5rem;
+width: 90%;
+border-radius: 15px;
+margin: 20px auto;
+}
+.third-container {
+background-color: #fff;
+height: auto;
+width: auto;;
+line-height: 2.5rem;
+border-radius: 25px;
+padding-inline: 10px;
+text-align: justify;
+padding-inline: 2rem;
+}
+
+.graph third-container {
+  background-color: #fff;
+  height: auto;
+  width: auto;
+  line-height: 2.5rem;
+  border-radius: 25px;
+  padding-inline: 10px;
+  text-align: justify;
+  padding-inline: 2rem;
+}
+}
 </style>

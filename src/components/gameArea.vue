@@ -44,7 +44,7 @@ let a = ref(); // variable parcourir le tableau de couleur de façon aleatoire
 let misses = ref(0); // variable pour compter le nombre de clics ratés
 
 // Propriétés réactives pour les dimensions de la zone de jeu
-let containerCercleWidth = ref(400); // Largeur par défaut
+let containerCercleWidth = ref(600); // Largeur par défaut
 let containerCercleHeight = ref(200); // Hauteur par défaut
 
 const isChangeColorActive = ref(true); // variable pour changer la couleur de la balle si l'utilisateur coche la case changement ou variation de couleur au clic
@@ -177,32 +177,7 @@ function updateContainerCercleSize(newWidth, newHeight) {
 
 <template>
   <div class="wrap">
-    <!-- Ajouter des champs de saisie pour les dimensions -->
-    <div v-if="Start" class="dimensions-cercle-container">
-      <h2>Veillez saisir les dimensions de votre espace de jeu:</h2>
-      <label for="largeur"
-        >Largeur:
-        <input
-          type="number"
-          v-model="containerCercleWidth"
-          min="100"
-          max="446"
-          placeholder="Largeur de la zone de jeu"
-        /> </label
-      ><br />
-      <label for="hauteur"
-        >Hauteur:
-        <input
-          type="number"
-          v-model="containerCercleHeight"
-          min="100"
-          max="225"
-          placeholder="Hauteur de la zone de jeu"
-        />
-      </label>
-      <br />
-    </div>
-
+   
     <div class="container">
       <div v-if="Start">
         <h1>Bienvenue dans le jeu !</h1>
@@ -238,9 +213,7 @@ function updateContainerCercleSize(newWidth, newHeight) {
           </label>
           <button
             @click="startGame"
-            :disabled="numClicks < 5
-             || containerCercleHeight<100 ||  containerCercleHeight>225 
-             || containerCercleWidth <100 ||  containerCercleWidth>446" 
+            :disabled="numClicks < 5" 
             class="gamebutton"
           >
             Commencer le jeu
@@ -386,7 +359,7 @@ ul {
   padding: 0;
   text-align: center;
   font-size: 20px;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .second {
@@ -403,7 +376,9 @@ ul {
   background-color: #2b87d1;
   display: flex;
   justify-content: center;
+  border: 2px solid red;
   align-items: center;
+  align-content: center;
   color: white;
 }
 
@@ -508,5 +483,337 @@ li {
 
 .wrap {
   text-align: center;
+}
+
+/*tablette*/
+
+@media screen and (max-width: 768px) {
+
+
+  h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+li {
+  padding: 0px;
+  margin: 10px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.dimensions-cercle-container {
+  color: rgb(245, 16, 153);
+  font-size: 12px;
+}
+
+.dimensions-cercle-container input {
+  color: rgb(0, 45, 247);
+  margin-bottom: 20px;
+  height: 20px;
+  font-size: 18px;
+  width: 100px
+
+}
+
+.dimensions-cercle-container label {
+  color: rgb(16, 133, 168);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.container-cercle {
+  padding: 30%;
+  position: relative;
+  border: 1px solid red;
+
+}
+
+.cercle-p {
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.restast-button {
+  margin: 0;
+  padding: 13px;
+  text-align: center;
+  transform: translateX(13px);
+  margin-top: 35px;
+  color: inherit;
+  background-color: yellow;
+
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.restast-button:hover {
+  cursor: pointer; /*fait pointer le bouton */
+}
+
+.recom:hover {
+  cursor: pointer; /*fait pointer le bouton */
+}
+
+.save {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.second {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 500px;
+  width: 380px;
+  background-color: #2b87d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.recom {
+  margin: 0 auto;
+  padding: 13px;
+  text-align: center;
+  transform: translateX(13px);
+  margin-top: 35px;
+  color: inherit;
+  background-color: rgb(70, 252, 4);
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+ margin : 0 auto;
+}
+
+.input-button {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* main h1  {
+  margin-bottom: 100px;
+ 
+} */
+
+.cercle {
+  background-color: #ff000080;
+  border: 1px solid #ff000080;
+  border-radius: 50%;
+  width: 100px;
+  height: 103px;
+  position: relative;
+  top: 10px;
+  left: 38%;
+  /* margin: auto; */
+  max-width: 100px;
+  max-height: 100px;
+}
+
+#clicks {
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
+    rgba(246, 222, 2, 0.22) 0px 15px 12px;
+  /* margin-top: 70px; */
+  margin-bottom: 10px;
+}
+
+.label {
+  margin-bottom: 8px;
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.gamebutton {
+  color: inherit;
+  background-color: rgb(255, 115, 0);
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 25px;
+}
+
+
+
+
+
+/*mobile*/
+@media screen and (max-width: 480px) {
+
+
+h1 {
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 15px;
+margin-bottom: 20px;
+}
+
+
+
+.dimensions-cercle-container {
+color: rgb(245, 16, 153);
+font-size: 10px
+}
+.dimensions-cercle-container input {
+color: rgb(0, 45, 247);
+margin-bottom: 20px;
+height: 20px;
+font-size: 15px;
+width: 50px
+
+}
+
+.dimensions-cercle-container label {
+color: rgb(16, 133, 168);
+font-size: 16px;
+font-weight: 500;
+}
+
+
+
+
+
+.cercle-p {
+color: white;
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 20px;
+margin-top: 15px;
+}
+
+.restast-button {
+margin: 0;
+padding: 10px;
+text-align: center;
+transform: translateX(5px);
+margin-top: 35px;
+color: inherit;
+background-color: yellow;
+
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+margin-right: 50px;
+}
+
+
+
+.save {
+font-family: sans-serif;
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 10px;
+margin-top: 15px;
+}
+
+.second {
+margin: 0;
+padding: 0;
+text-align: center;
+font-weight: bold;
+font-size: 20px;
+font-family: sans-serif;
+}
+
+.container {
+height: 400px;
+width: 300px;
+background-color: #2b87d1;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+margin: 0 auto;
+margin-top: 20px;
+}
+
+.recom {
+margin: 0 auto;
+padding: 10px;
+text-align: center;
+transform: translateX(3px);
+margin-top: 35px;
+color: inherit;
+background-color: rgb(70, 252, 4);
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+margin : 0 auto;
+}
+
+
+
+
+#clicks {
+width: 150px;
+height: 30px;
+border: none;
+border-radius: 10px;
+box-shadow: rgba(240, 114, 3, 0.3) 0px 19px 38px,
+  rgba(246, 222, 2, 0.22) 0px 15px 12px;
+/* margin-top: 70px; */
+margin-bottom: 10px;
+}
+
+.label {
+margin-bottom: 8px;
+margin-top: 8px;
+font-size: 20px;
+}
+
+.gamebutton {
+color: inherit;
+background-color: rgb(255, 115, 0);
+border-radius: 10px;
+border: none;
+color: black;
+font-weight: bold;
+padding: 10px;
+margin-top: 25px;
+}
+
+
+
+}
+
 }
 </style>

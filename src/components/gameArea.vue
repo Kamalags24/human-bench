@@ -9,8 +9,6 @@ const Game = ref(false); // variable pour afficher l'espace du jeu
 const End = ref(true); // variable pour afficher l'espace de resultat du jeu
 let count = ref(); // variable pour compter le nombre de clic
 let top = ref(0); //variable pour changer la position de la balle au clic vers le haut
-let right = ref(0); //variable pour changer la position de la balle au clic vers la gauche
-let bottom = ref(0); //variable pour changer la position de la balle au clic vers la gauche
 let left = ref(0); //variable pour changer la position de la balle au clic vers la gauche
 let second = ref(0); // variable pour compter le temps  en milisecond
 let score = ref(0); // variable pour stocker le score
@@ -91,10 +89,8 @@ function changePosition() {
 
   // Calculez la nouvelle position en tenant compte de la taille de la balle
  
-  top.value = Math.floor(Math.random() * 100);
-  right.value = Math.floor(Math.random() *200 );
-  bottom.value = Math.floor(Math.random() *200 );
-  left.value = Math.floor(Math.random() *200 );
+  top.value = Math.floor(Math.random() * 60);
+  left.value = Math.floor(Math.random() *80 );
   
   //condition pour changer  la  taille de la balle au clic quand la case variation de taille est coche
   if (ischangePosition.value) {
@@ -173,14 +169,12 @@ function stockerScore() {
   <div class="wrap">
    
     <div class="container">
-      <div v-if="Start">
+      <div v-if="Start" >
         <h1>Bienvenue dans le jeu !</h1>
         <div class="cercle"></div>
-        <p id="choix">
-          Choisissez le nombre de cible et atteigner le, le plus vite possible !
-        </p>
         <!-- <input type="number"> -->
         <div class="input-button">
+          <p> Choisissez le nombre de cible et atteigner le, le plus vite possible !</p>
           <input
             type="number"
             id="clicks"
@@ -219,33 +213,31 @@ function stockerScore() {
         </div>
       </div>
 
-      <main class="zone" v-if="Game">
+      <main
+       class="zone"
+       v-if="Game"
+       @click="handleMisses">
         <!--  div conteneur de l'espace du jeu  -->
 
-        <div  class="ligne">
-          <ul>
-            <li>
-              <p>Remaining: {{ count }}</p>
-              <!--affiche le nombre de clics restant-->
-            </li>
-            <li>
-              <p>Misses: {{ misses }}</p>
-              <!--affiche le nombre de clics ratés-->
-            </li>
-          </ul>
-        </div>
 
-        <div
-          class="container-cercle"
-           @click="handleMisses"
-        >
+        <div class="container-cercle">
+          <div  class="ligne">
+            <ul>
+              <li>
+                <p>Remaining: {{ count }}</p>
+                <!--affiche le nombre de clics restant-->
+              </li>
+              <li>
+                <p>Misses: {{ misses }}</p>
+                <!--affiche le nombre de clics ratés-->
+              </li>
+            </ul>
+          </div>
           <div
             class="cercle"
             :style="{
-              top: top + 'px',
-              right: right + 'px',
-              bottom: bottom + 'px',
-              left: left + 'px',
+              top: top + '%',
+              left: left + '%',
               width: width + 'px',
               backgroundColor: couleurs[a],
               height: height + 'px',
@@ -257,7 +249,7 @@ function stockerScore() {
         </div>
       </main>
 
-      <div v-if="!End">
+      <div v-if="!End" class="end">
         <!--  div conteneur de l'espace de resultat du jeu  -->
         <div class="cercle"></div>
         <p class="cercle-p">Temps de jeu par click</p>
@@ -267,9 +259,11 @@ function stockerScore() {
         <h4 class="best">Meilleur score: {{ allScores[0] }} ms</h4>
         <!-- affiche le nombre de clics ratés -->
         <p class="save">Save your score to see how you compare</p>
-        <button class="restast-button" @click="restartGame">Reprendre</button>
-        <!-- bouton pour reprendre le jeu -->
-        <button class="recom" @click="recommencer">Recommencer</button>
+        <div>
+          <button class="restast-button" @click="restartGame">Reprendre</button>
+          <!-- bouton pour reprendre le jeu -->
+          <button class="recom" @click="recommencer">Recommencer</button>
+        </div>
         <!-- bouton pour recommencer le jeu -->
       </div>
     </div>
@@ -278,10 +272,22 @@ function stockerScore() {
 
 <style scoped>
 
-
 * {
   box-sizing: border-box;
 }
+
+.container {
+  width: 100%;
+  height: 80vh;
+  background-color: #2b87d1;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: white;
+}
+
+
 
 h1 {
   margin: 0;
@@ -305,12 +311,33 @@ ul {
 .ligne ul li {
   display: inline-block;
   padding: 30px;
+}  
+
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 
+.zone {
+ 
+ color: white;
+ /* display: flex; */
+ flex-direction: column;
+ border: 2px solid rgb(2, 255, 225);
+ width: 100%;
+ height: 100%;
+}
 .container-cercle {
-  padding: 30%;
-  width: 550px;
+  /* padding: 30%; */
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid orange;
   
 
 }
@@ -364,16 +391,6 @@ ul {
   font-family: sans-serif;
 }
 
-.container {
-  width: 100%;
-  height: 550px;
-  background-color: #2b87d1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  color: white;
-}
 
 .recom {
   margin: 0;
@@ -393,6 +410,10 @@ ul {
   margin: 0;
   padding: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
 }
 
 
@@ -431,12 +452,10 @@ align-content: center;
   width: 100px;
   height: 103px;
   position: relative;
-  top: 10px;
-  right: 10px;
-  left: 38%;
+  top: 5px;
+  left: 47%;
   margin-bottom: 15px;
-  /* max-width: 100px;
-  max-height: 100px; */
+ 
 }
 
 #clicks {
@@ -471,12 +490,6 @@ align-content: center;
   cursor: pointer;
 }
 
-.zone {
- 
- color: white;
- display: flex;
- flex-direction: column;
-}
 
 span {
   padding-left: 110px;
@@ -513,8 +526,22 @@ li {
   gap: 50 px;
 }
 
-.wrap {
+/* .wrap {
   text-align: center;
+} */
+
+.end {
+  width: 700px;
+  margin: 0 auto;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+ align-content: center;
+ border: 1px greenyellow solid;
+ text-align: center;
+ font-size: 25px;
+ padding: 20px;
+
 }
 
 /*tablette*/
@@ -821,19 +848,8 @@ margin-top: 25px;
   margin-bottom: 20px;
 }
 
-#choix{
-  font-size: 12px;
-  text-align: center;
-  margin-bottom: 10px;
-  /* margin-left: 10px; */
-}
 }
 
-.container-cercle {
-  padding: 30%;
-  width: 100%;
-  
 
-}
 
 </style>

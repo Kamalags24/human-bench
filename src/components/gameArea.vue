@@ -332,12 +332,10 @@ ul {
  height: 100%;
 }
 .container-cercle {
-  /* padding: 30%; */
   width: 90%;
   height: 90%;
   margin: auto;
   padding: 10px;
-  border: 1px solid orange;
   
 
 }
